@@ -1,10 +1,14 @@
 package core;
 
+import java.util.ArrayList;
+
 public class Cellule {
 	
 	protected int coordX;
 	protected int coordY;
 	protected Carte carte;
+	protected Ressource ressource;
+	protected Personnage personnage;
 	
 	
 	
@@ -16,6 +20,10 @@ public class Cellule {
 	}
 	public int getCoordX() {
 		return coordX;
+	}
+	
+	public Cellule() {
+		super();
 	}
 	public Cellule(int coordX, int coordY) {
 		super();
