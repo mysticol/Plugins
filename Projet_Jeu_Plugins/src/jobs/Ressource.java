@@ -1,4 +1,4 @@
-package core;
+package jobs;
 
 public abstract class Ressource {
 	

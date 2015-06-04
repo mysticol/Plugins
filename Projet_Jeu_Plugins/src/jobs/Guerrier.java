@@ -1,4 +1,4 @@
-package core;
+package jobs;
 
 public class Guerrier extends Personnage {
 	

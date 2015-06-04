@@ -1,5 +1,11 @@
 package core;
 
+import jobs.Carte;
+import jobs.Guerrier;
+import jobs.Nourriture;
+import jobs.Or;
+import jobs.Paysan;
+
 public class Main {
 
 	public static void main(String[] args) {
