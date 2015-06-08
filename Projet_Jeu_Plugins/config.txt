@@ -1,2 +1,1 @@
-Lanceur = ILanceur;LANCEUR;C://okGoogle
-Deplacement = IAfficheur;lol;C://lolilol
+Lanceur = IPlugin;LANCEUR;file:///Users/Sébastien/git/Plugins/PluginLanceur/bin/
