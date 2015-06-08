@@ -2,6 +2,7 @@ package core;
 
 import java.util.List;
 
+import gui.GameUI;
 import interfaces.IPlugin;
 
 public class Main {
@@ -15,6 +16,8 @@ public class Main {
 			// Appel du plugin Lanceur
 			System.out.println(a.toString());
 		}
+		
+		GameUI gameUI = new GameUI();
 
 	}
 
