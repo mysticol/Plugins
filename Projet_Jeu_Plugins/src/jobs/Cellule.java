@@ -1,6 +1,5 @@
 package jobs;
 
-import java.util.ArrayList;
 
 public class Cellule {
 	

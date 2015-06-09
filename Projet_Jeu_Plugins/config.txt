@@ -1,1 +1,3 @@
-Lanceur = IPlugin;LANCEUR;file:///Users/sheuze/Perso/Plugins/PluginLanceur/bin/
+Lanceur = IPlugin;LANCEUR;file:///Users/sheuze/Perso/Plugins/PluginLanceur/bin/;true
+Map = IPlugin;AFFICHAGE;file:///Users/sheuze/Perso/Plugins/PluginMap/bin/;true
+Credits = IPlugin;AFFICHAGE;file:///Users/sheuze/Perso/Plugins/PluginCredits/bin/;true

@@ -79,7 +79,7 @@ public final class Platform {
 		for(Object key : config.keySet()) {
 			String info = (String)config.get(key);
 			String[] infos = info.split(";");
-			if(("interfaces." + infos[0]).equals(interf.getName())) {
+			if(("interfaces." + infos[0]).equals(interf.getName())  && Boolean.valueOf(infos[3])) {
 				PluginInfo pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
 				listePluginsInfo.add(pluginInfo);
 			}
@@ -95,16 +95,14 @@ public final class Platform {
 	 * @param interf
 	 * @return
 	 */
-	public List<PluginInfo> getPluginsInfo(TypePlugin type) {
+	public List<PluginInfo> getPluginsInfo(Class<?> interf, TypePlugin type) {
 		List<PluginInfo> listePluginsInfo = new ArrayList<PluginInfo>();
-		
-		PluginInfo pluginInfo = null;
 		
 		for(Object key : config.keySet()) {
 			String info = (String)config.get(key);
 			String[] infos = info.split(";");
-			if(infos[1].equals(type)) {
-				pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
+			if(infos[1].equals(type.name()) && ("interfaces." + infos[0]).equals(interf.getName()) && Boolean.valueOf(infos[3])) {
+				PluginInfo pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
 				listePluginsInfo.add(pluginInfo);
 			}
 		}		

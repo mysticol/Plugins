@@ -1,10 +1,16 @@
-package gui;
+package plugin;
+
+import interfaces.IPlugin;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -19,6 +25,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 
+import core.Platform;
+import core.PluginInfo;
+import core.TypePlugin;
+
 /**
  * Classe de chargement initial de l'interface graphique du jeu
  */
@@ -29,6 +39,11 @@ public class GameUI {
 	 * Interface principale (Lanceur)
 	 */
 	private JFrame frame;
+	
+	/**
+	 * Affichage actuel
+	 */
+	private Component affichage;
 	
 	/**
 	 * Panel pour les plugins affichage
@@ -94,7 +109,7 @@ public class GameUI {
     	
     	//On attend 2 secondes pour la fermeture du splashscreen
     	try {
-    	    Thread.sleep(1000);
+    	    Thread.sleep(100);
     	} catch (InterruptedException e) {
     	    e.printStackTrace();
     	}
@@ -118,13 +133,20 @@ public class GameUI {
         //Création de la fenêtre principale
         frame = new JFrame("Age of Mottu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        
-        //On ajoute pour l'instant en dur le Plugin Map
-        frame.add(new MapPlugin());
-        
-        
-        
+        frame.setLayout(new BorderLayout()); 
+	}
+	
+	/**
+	 * On affiche tel ou tel plugin Affichage
+	 * @param comp
+	 */
+	public void setAffichageFrame(Component comp){
+		if(affichage != null){
+			frame.remove(affichage);
+		}
+		frame.add(comp);
+		this.affichage = comp;
+		frame.pack();
 	}
 	
 	
@@ -160,17 +182,36 @@ public class GameUI {
         displayButtons.setSize(10, 10);
         displayButtons.setLayout(new BoxLayout(displayButtons, BoxLayout.Y_AXIS));
         
-        //On crée un bouton par plugin affichage (en dur pour l'instant)
-        for(int i=0; i<4; i++){
-        	JButton button = new JButton("Aff. Plugin " + i);
+        //On crée un bouton par plugin affichage
+      
+      	List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IPlugin.class, TypePlugin.AFFICHAGE);
+        for(PluginInfo plugin : pluginInfo){
+        	JButton button = new JButton(plugin.getNom());
+        	button.addActionListener(new AffichageActionListener(plugin));
         	displayButtons.add(button);
         }
         
         //On ajoute à la Frame principale
         frame.add(displayButtons, BorderLayout.EAST);		
 	}
-
 	
+	
+	private class AffichageActionListener implements ActionListener {
+
+		PluginInfo plugin;
+
+        public AffichageActionListener(PluginInfo plugin) {
+            this.plugin = plugin;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Affichage du plugin "+plugin.getNom());
+            
+            IPlugin pluginPrincipal = (IPlugin)Platform.getInstance().getPlugin(plugin);
+			pluginPrincipal.chargerPlugin();
+			setAffichageFrame((Component) pluginPrincipal);
+        }
+    }
 
 	
 

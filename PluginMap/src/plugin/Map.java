@@ -1,4 +1,6 @@
-package gui;
+package plugin;
+
+import interfaces.IPlugin;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,7 +18,7 @@ import javax.swing.JPanel;
  * @author SEB
  *
  */
-public class MapPlugin extends JPanel {
+public class Map extends JPanel implements IPlugin {
 
 	
 	/**
@@ -50,9 +52,17 @@ public class MapPlugin extends JPanel {
     private Point selectedCell;
 
     /**
+     * Méthode pour charger le plugin
+     */
+	@Override
+	public void chargerPlugin() {
+		
+	}
+	
+    /**
      * Constructeur du plugin
      */
-    public MapPlugin() {
+    public Map() {
     	mapCells = new Rectangle[ROW_COUNT][COLUMN_COUNT];
     	
     	/**
@@ -157,4 +167,6 @@ public class MapPlugin extends JPanel {
         
         g2d.dispose();
     }
+
+
 }
