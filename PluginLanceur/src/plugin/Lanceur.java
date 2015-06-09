@@ -3,6 +3,11 @@ package plugin;
 import core.Platform;
 import interfaces.IPlugin;
 
+/**
+ * Plugin principal, appelé Lanceur
+ * @author sheuze
+ *
+ */
 public class Lanceur implements IPlugin{
 	
 	public void chargerPlugin()

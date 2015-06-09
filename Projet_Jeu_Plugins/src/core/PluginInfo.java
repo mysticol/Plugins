@@ -7,9 +7,24 @@ package core;
  */
 public class PluginInfo {
 	
+	/**
+	 * Nom du plugin
+	 */
 	private String nom;
+	
+	/**
+	 * Nom de l'interface du plugin
+	 */
 	private String interf;	
+	
+	/**
+	 * Type du plugin
+	 */
 	private TypePlugin type;
+	
+	/**
+	 * Path du plugin
+	 */
 	private String path;
 	
 	public String getPath() {
@@ -36,24 +51,8 @@ public class PluginInfo {
 	{
 		this.nom = nomPlugin;
 		this.interf = interf;
-		switch(typePlugin)
-		{
-			case "LANCEUR" :
-				this.type = TypePlugin.LANCEUR;
-				break;
-			case "AFFICHEUR":
-				this.type = TypePlugin.AFFICHAGE;
-				break;
-			case "DEPLACEMENT":
-				this.type = TypePlugin.DEPLACEMENT;
-				break;
-			case "RECOLTE":
-				this.type = TypePlugin.RECOLTE;
-				break;
-			default :
-				this.type = TypePlugin.AUTRE;
-				break;
-		}
+		this.type = TypePlugin.valueOf(typePlugin);
+		this.path = pathPlugin;
 	}
 
 	public TypePlugin getType()

@@ -5,6 +5,5 @@ public enum TypePlugin {
 	PRODUCER,
 	DEPLACEMENT,
 	AFFICHAGE,
-	RECOLTE,
-	AUTRE
+	RECOLTE
 }

@@ -1,32 +1,39 @@
 package core;
 
-import java.net.MalformedURLException;
 import java.util.List;
 
 import gui.GameUI;
 import interfaces.IPlugin;
 
+/**
+ * Classe principale
+ * @author sheuze
+ *
+ */
 public class Main {
 	
-	static IPlugin pluginPrincipal;
-	static Platform plateforme;
 
-	public static void main(String[] args) throws MalformedURLException {
+	/**
+	 * Démarrage de l'appli
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		
-		plateforme = new Platform();
-		List<PluginInfo> pluginInfo = plateforme.getPluginsInfo(IPlugin.class);
-		for (PluginInfo a : pluginInfo)
+		//On récupère la liste des plugins
+		List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IPlugin.class);
+		for (PluginInfo plugin : pluginInfo)
 		{
 			// Appel du plugin Lanceur			
-			if(a.getType() == TypePlugin.LANCEUR)
+			if(plugin.getType() == TypePlugin.LANCEUR)
 			{
-				pluginPrincipal = (IPlugin)plateforme.getPlugin(IPlugin.class);				
+				IPlugin pluginPrincipal = (IPlugin)Platform.getInstance().getPlugin(plugin);				
 				pluginPrincipal.chargerPlugin();
-				System.out.println("Le plugin " + a.getNom() + " a été chargé !");
+				System.out.println("Le plugin " + plugin.getNom() + " a été chargé !");
 			}
 		}
 		
-		GameUI gameUI = new GameUI();
+		//Initialisation du jeu
+		new GameUI();
 
 	}
 

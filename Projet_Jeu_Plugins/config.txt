@@ -1,1 +1,1 @@
-Lanceur = IPlugin;LANCEUR;file:///Users/Sébastien/git/Plugins/PluginLanceur/bin/
+Lanceur = IPlugin;LANCEUR;file:///Users/sheuze/Perso/Plugins/PluginLanceur/bin/

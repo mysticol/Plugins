@@ -74,18 +74,13 @@ public final class Platform {
 	 */
 	public List<PluginInfo> getPluginsInfo(Class<?> interf) {
 		List<PluginInfo> listePluginsInfo = new ArrayList<PluginInfo>();
-		PluginInfo pluginInfo = null;
 		
+		// Pour chaque entrée dans le fichier de config
 		for(Object key : config.keySet()) {
 			String info = (String)config.get(key);
 			String[] infos = info.split(";");
 			if(("interfaces." + infos[0]).equals(interf.getName())) {
-				pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
-				pluginInfo.setNom((String)key);
-				pluginInfo.setInterf(infos[0]);			
-				pluginInfo.setType(getType(infos[1]));
-				pluginInfo.setPath(infos[2]);
-
+				PluginInfo pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
 				listePluginsInfo.add(pluginInfo);
 			}
 		}
@@ -110,11 +105,6 @@ public final class Platform {
 			String[] infos = info.split(";");
 			if(infos[1].equals(type)) {
 				pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
-				pluginInfo.setNom((String)key);
-				pluginInfo.setInterf(infos[0]);			
-				pluginInfo.setType(type);
-				pluginInfo.setPath(infos[2]);
-
 				listePluginsInfo.add(pluginInfo);
 			}
 		}		
@@ -127,25 +117,32 @@ public final class Platform {
 	 * @return
 	 * @throws MalformedURLException 
 	 */
-	public Object getPlugin(Class<?> className) throws MalformedURLException {
+	public Object getPlugin(PluginInfo pluginInfo) {
 		
-		List<PluginInfo> liste = getInstance().getPluginsInfo(className);
-			System.out.println("Chargement du Plugin " +liste.get(0).getNom());
-			System.out.println(liste.get(0).toString());
-			//Instanciation de la classe en fonction de son chemin 
-			//présent dans le fichier de configuration
-			URL url = new URL(liste.get(0).getPath());
-			URL[] urls = { url };			
-			try
-			{				
-				ClassLoader cl = new URLClassLoader(urls);
-				Class cls = cl.loadClass("plugin." +liste.get(0).getNom());
-				return cls.newInstance();
-			}
-			catch(Exception e)
-			{
-				return null;
-			}
+		
+		System.out.println("Chargement du Plugin " + pluginInfo.getNom());
+		System.out.println(pluginInfo.toString());
+		
+		//Instanciation de la classe en fonction de son chemin 
+		//présent dans le fichier de configuration
+		URL[] urls = null;
+		try {
+			urls = new URL[]{ new URL(pluginInfo.getPath()) };
+		} catch (MalformedURLException e1) {
+			System.out.println("Erreur lors du chargement du plugin " +pluginInfo.getNom() + " PATH Incorrect");
+			e1.printStackTrace();
+		}
+			
+		try
+		{				
+			ClassLoader cl = new URLClassLoader(urls);
+			Class<?> cls = cl.loadClass("plugin." +pluginInfo.getNom());
+			return cls.newInstance();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 	}
 	
 	/**
@@ -160,19 +157,6 @@ public final class Platform {
 		return plateforme;
 	}
 	
-	public static TypePlugin getType(String type)
-	{
-		TypePlugin result = null;
-		switch (type)
-		{
-			case "AFFICHAGE" :
-				result = TypePlugin.AFFICHAGE;
-				break;
-			case "LANCEUR" :
-				result = TypePlugin.LANCEUR;
-		}
-		return result;
-	}
 	
 	/**
 	 * Getters et Setters
