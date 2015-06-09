@@ -54,11 +54,11 @@ public class Map extends JPanel implements IPlugin {
     /**
      * Méthode pour charger le plugin
      */
-	@Override
 	public void chargerPlugin() {
 		
 	}
 	
+    
     /**
      * Constructeur du plugin
      */
@@ -105,6 +105,8 @@ public class Map extends JPanel implements IPlugin {
         addMouseMotionListener(mouseHandler);
     }
 
+
+	
     /**
      * Taille de la map en pixel
      */
@@ -167,6 +169,8 @@ public class Map extends JPanel implements IPlugin {
         
         g2d.dispose();
     }
+
+
 
 
 }

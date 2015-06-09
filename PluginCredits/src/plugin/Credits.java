@@ -26,7 +26,6 @@ public class Credits extends JPanel implements IPlugin {
     /**
      * Méthode pour charger le plugin
      */
-	@Override
 	public void chargerPlugin() {
 		
 	}
