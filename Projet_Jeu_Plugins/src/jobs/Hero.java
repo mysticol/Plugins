@@ -1,6 +1,6 @@
 package jobs;
 
-public class Paysan extends Personnage {
+public class Hero extends Personnage {
 
 	// Attributs
 	int stockOr;
@@ -8,11 +8,11 @@ public class Paysan extends Personnage {
 
 
 	// Constucteurs
-	public Paysan(){
+	public Hero(){
 
 	}
 
-	public Paysan(int vie, int stockNourriture,int stockOr){
+	public Hero(int vie, int stockNourriture,int stockOr){
 		super(vie);
 		this.stockNourriture=stockNourriture;
 		this.stockOr=stockOr;
@@ -34,7 +34,7 @@ public class Paysan extends Personnage {
 
 	@Override
 	public String toString() {
-		return "Paysan [vie=" +getVie()+ ", stock de nourriture=" + stockNourriture + ", stock d'or=" + stockOr + "]";
+		return "Hero [vie=" +getVie()+ ", stock de nourriture=" + stockNourriture + ", stock d'or=" + stockOr + "]";
 	}
 
 	public void Recolter(Ressource ressource){

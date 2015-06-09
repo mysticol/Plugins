@@ -1,6 +1,7 @@
 package plugin;
 
-import interfaces.IPlugin;
+import interfaces.IActionPlugin;
+import interfaces.IDisplayPlugin;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -161,13 +162,15 @@ public class GameUI {
         actionButtons.setSize(10, 10);
         actionButtons.setLayout(new BoxLayout(actionButtons, BoxLayout.X_AXIS));
         
-        //On crée un bouton par plugin action (en dur pour l'instant)
-        for(int i=0; i<6; i++){
-        	JButton button = new JButton("Action Plugin " + i);
+        //On crée un bouton par plugin action
+      	List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IActionPlugin.class, TypePlugin.ACTION);
+        for(PluginInfo plugin : pluginInfo){
+        	JButton button = new JButton(plugin.getNom());
+        	button.addActionListener(new ActionActionListener(plugin));
         	actionButtons.add(button);
         }
         
-      //On ajoute à la Frame principale
+        //On ajoute à la Frame principale
         frame.add(actionButtons, BorderLayout.SOUTH);		
 	}
 
@@ -183,8 +186,7 @@ public class GameUI {
         displayButtons.setLayout(new BoxLayout(displayButtons, BoxLayout.Y_AXIS));
         
         //On crée un bouton par plugin affichage
-      
-      	List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IPlugin.class, TypePlugin.AFFICHAGE);
+      	List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IDisplayPlugin.class, TypePlugin.AFFICHAGE);
         for(PluginInfo plugin : pluginInfo){
         	JButton button = new JButton(plugin.getNom());
         	button.addActionListener(new AffichageActionListener(plugin));
@@ -207,13 +209,26 @@ public class GameUI {
         public void actionPerformed(ActionEvent e) {
             System.out.println("Affichage du plugin "+plugin.getNom());
             
-            IPlugin pluginPrincipal = (IPlugin)Platform.getInstance().getPlugin(plugin);
-			pluginPrincipal.chargerPlugin();
-			setAffichageFrame((Component) pluginPrincipal);
+            IDisplayPlugin pluginPrincipal = (IDisplayPlugin) Platform.getInstance().getPlugin(plugin);
+            pluginPrincipal.display();
         }
     }
-
 	
+	private class ActionActionListener implements ActionListener {
+
+		PluginInfo plugin;
+
+        public ActionActionListener(PluginInfo plugin) {
+            this.plugin = plugin;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action du plugin "+plugin.getNom());
+            
+            IActionPlugin pluginPrincipal = (IActionPlugin) Platform.getInstance().getPlugin(plugin);
+            pluginPrincipal.doAction();
+        }
+    }	
 
     
 }

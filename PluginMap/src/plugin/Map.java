@@ -1,5 +1,6 @@
 package plugin;
 
+import interfaces.IDisplayPlugin;
 import interfaces.IPlugin;
 
 import java.awt.Color;
@@ -13,12 +14,14 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
+import core.Platform;
+
 /**
  * Pas vraiment un plugin pour l'instant mais cela sert d'exemple
  * @author SEB
  *
  */
-public class Map extends JPanel implements IPlugin {
+public class Map extends JPanel implements IDisplayPlugin {
 
 	
 	/**
@@ -55,10 +58,16 @@ public class Map extends JPanel implements IPlugin {
      * Méthode pour charger le plugin
      */
 	public void chargerPlugin() {
-		
+		System.out.println("Le plugin Map a été chargé !");
 	}
 	
-    
+	/**
+	 * Affichage
+	 */
+	public void display() {
+		Platform.getInstance().getLauncherPlugin().setAffichage(this);
+	}
+	
     /**
      * Constructeur du plugin
      */
@@ -169,8 +178,5 @@ public class Map extends JPanel implements IPlugin {
         
         g2d.dispose();
     }
-
-
-
 
 }

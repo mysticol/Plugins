@@ -1,12 +1,19 @@
 package core;
 
+import interfaces.IActionPlugin;
+import interfaces.IDisplayPlugin;
+import interfaces.ILauncherPlugin;
+import interfaces.IPlugin;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -36,6 +43,22 @@ public final class Platform {
 	private static Platform plateforme;
 	
 	/**
+	 * Plugin Launcher (1 seul)
+	 */
+	private ILauncherPlugin launcherPlugin;
+	
+	/**
+	 * Liste de plugins actions
+	 */
+	private Map<String,IActionPlugin> actionPluginsList;
+	
+	/**
+	 * Liste de plugins d'affichage
+	 */
+	private Map<String,IDisplayPlugin> displayPluginsList;
+	
+	
+	/**
 	 * Propriétés du fichier de config
 	 */
 	private Properties config;
@@ -51,6 +74,9 @@ public final class Platform {
 	 */
 	public Platform()
 	{
+		actionPluginsList = new HashMap<String, IActionPlugin>();
+		displayPluginsList = new HashMap<String, IDisplayPlugin>();
+		
 		this.loadConfig();
 	}
 	
@@ -67,26 +93,33 @@ public final class Platform {
 	}
 	
 	/**
-	 * Lecture du fichier de configuration et création d'une liste de Plugin Info
-	 * Retourne la liste de Plugin Info
-	 * @param interf
-	 * @return
+	 * Charger un plugin
 	 */
-	public List<PluginInfo> getPluginsInfo(Class<?> interf) {
-		List<PluginInfo> listePluginsInfo = new ArrayList<PluginInfo>();
-		
-		// Pour chaque entrée dans le fichier de config
-		for(Object key : config.keySet()) {
-			String info = (String)config.get(key);
-			String[] infos = info.split(";");
-			if(("interfaces." + infos[0]).equals(interf.getName())  && Boolean.valueOf(infos[3])) {
-				PluginInfo pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
-				listePluginsInfo.add(pluginInfo);
-			}
+	public void chargerPlugin(IPlugin plugin){
+		if (plugin instanceof IActionPlugin){
+			actionPluginsList.put(plugin.getClass().getName(), (IActionPlugin) plugin);
+		} else if (plugin instanceof IDisplayPlugin){
+			displayPluginsList.put(plugin.getClass().getName(), (IDisplayPlugin) plugin);
+		} else if (plugin instanceof ILauncherPlugin){
+			launcherPlugin = (ILauncherPlugin) plugin;
 		}
-		
-		return listePluginsInfo;
 	}
+	
+	/**
+	 * Plugin Exist ?
+	 */
+	public IPlugin getPluginInstance(PluginInfo pluginInfo){
+		if ("IActionPlugin".equals(pluginInfo.getInterf())){
+			return actionPluginsList.get("plugin."+pluginInfo.getNom());
+		} else if ("IDisplayPlugin".equals(pluginInfo.getInterf())){
+			return displayPluginsList.get("plugin."+pluginInfo.getNom());
+		} else if ("ILauncherPlugin".equals(pluginInfo.getInterf())){
+			return launcherPlugin;
+		} else {
+			throw new RuntimeException("Type de Plugin incompatible");
+		}
+	}
+	
 	
 	/**
 	 * Lecture du fichier de configuration et création d'une liste de Plugin Info
@@ -115,32 +148,44 @@ public final class Platform {
 	 * @return
 	 * @throws MalformedURLException 
 	 */
-	public Object getPlugin(PluginInfo pluginInfo) {
+	public IPlugin getPlugin(PluginInfo pluginInfo) {
 		
+		//On check si le plugin existe déjà ou pas
+		IPlugin pluginInstance = this.getPluginInstance(pluginInfo);
 		
-		System.out.println("Chargement du Plugin " + pluginInfo.getNom());
-		System.out.println(pluginInfo.toString());
-		
-		//Instanciation de la classe en fonction de son chemin 
-		//présent dans le fichier de configuration
-		URL[] urls = null;
-		try {
-			urls = new URL[]{ new URL(pluginInfo.getPath()) };
-		} catch (MalformedURLException e1) {
-			System.out.println("Erreur lors du chargement du plugin " +pluginInfo.getNom() + " PATH Incorrect");
-			e1.printStackTrace();
-		}
+		//Si le plugin n'a jamais été chargé on le charge
+		if(pluginInstance == null){
+			System.out.println("Chargement du Plugin " + pluginInfo.getNom());
 			
-		try
-		{				
-			ClassLoader cl = new URLClassLoader(urls);
-			Class<?> cls = cl.loadClass("plugin." +pluginInfo.getNom());
-			return cls.newInstance();
+			//Instanciation de la classe en fonction de son chemin 
+			//présent dans le fichier de configuration
+			URL[] urls = null;
+			try {
+				urls = new URL[]{ new URL(pluginInfo.getPath()) };
+			} catch (MalformedURLException e1) {
+				System.out.println("Erreur lors du chargement du plugin " +pluginInfo.getNom() + " PATH Incorrect");
+				e1.printStackTrace();
+			}
+				
+					
+			URLClassLoader cl = new URLClassLoader(urls);
+			
+			Class<?> cls;
+			
+			try {
+				cls = cl.loadClass("plugin." +pluginInfo.getNom());
+				pluginInstance =  (IPlugin) cls.newInstance();
+				pluginInstance.chargerPlugin();
+				//On le charge pour des utilisations futures
+				this.chargerPlugin(pluginInstance);
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				System.out.println("Erreur lors du chargement du plugin " +pluginInfo.getNom() + " au chargement de la classe");
+				e.printStackTrace();
+			}
+			
 		}
-		catch(Exception e)
-		{
-			return null;
-		}
+		
+		return pluginInstance;
 	}
 	
 	/**
@@ -149,6 +194,7 @@ public final class Platform {
 	 */
 	public static Platform getInstance() {
 		if(plateforme == null) {
+			System.out.println("Initialisation de la Plateforme");
 			plateforme = new Platform();
 		}
 		
@@ -165,6 +211,12 @@ public final class Platform {
 	public static void setPlateforme(Platform plateforme) {
 		Platform.plateforme = plateforme;
 	}
+	public ILauncherPlugin getLauncherPlugin() {
+		return launcherPlugin;
+	}
+	public void setLauncherPlugin(ILauncherPlugin launcher) {
+		this.launcherPlugin = launcher;
+	}
 	public Properties getConfig() {
 		return config;
 	}
@@ -173,5 +225,35 @@ public final class Platform {
 	}
 	public String getFILECONFIGPATH() {
 		return FILECONFIGPATH;
+	}
+
+	/**
+	 * @return the actionPluginsList
+	 */
+	public Map<String, IActionPlugin> getActionPluginsList() {
+		return this.actionPluginsList;
+	}
+
+	/**
+	 * @param actionPluginsList the actionPluginsList to set
+	 */
+	public void setActionPluginsList(
+			Map<String, IActionPlugin> actionPluginsList) {
+		this.actionPluginsList = actionPluginsList;
+	}
+
+	/**
+	 * @return the displayPluginsList
+	 */
+	public Map<String, IDisplayPlugin> getDisplayPluginsList() {
+		return this.displayPluginsList;
+	}
+
+	/**
+	 * @param displayPluginsList the displayPluginsList to set
+	 */
+	public void setDisplayPluginsList(
+			Map<String, IDisplayPlugin> displayPluginsList) {
+		this.displayPluginsList = displayPluginsList;
 	}	
 }

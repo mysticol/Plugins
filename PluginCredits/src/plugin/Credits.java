@@ -1,8 +1,10 @@
 package plugin;
 
+import interfaces.IDisplayPlugin;
 import interfaces.IPlugin;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,12 +12,14 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
+import core.Platform;
+
 /**
  * Pas vraiment un plugin pour l'instant mais cela sert d'exemple
  * @author SEB
  *
  */
-public class Credits extends JPanel implements IPlugin {
+public class Credits extends JPanel implements IDisplayPlugin {
 
 	
 	/**
@@ -27,7 +31,14 @@ public class Credits extends JPanel implements IPlugin {
      * Méthode pour charger le plugin
      */
 	public void chargerPlugin() {
-		
+		System.out.println("Le plugin Credits a été chargé !");
+	}
+	
+	/**
+	 * Afficher le plugin
+	 */
+	public void display() {
+		Platform.getInstance().getLauncherPlugin().setAffichage(this);
 	}
 	
     /**
@@ -63,6 +74,8 @@ public class Credits extends JPanel implements IPlugin {
         g2d.fill(cell);
         g2d.dispose();
     }
+
+	
 
 
 }

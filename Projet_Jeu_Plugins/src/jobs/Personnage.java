@@ -36,6 +36,9 @@ public abstract class Personnage {
 		this.vie = vie;
 	}
 
+	public void blesser(int nbVie) {
+		this.vie = this.vie - nbVie;
+	}
 	
 	@Override
 	public abstract String toString();

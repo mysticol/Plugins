@@ -6,5 +6,8 @@ package interfaces;
  *
  */
 public interface IPlugin {
+	/**
+	 * On charge le plugin
+	 */
 	public void chargerPlugin();
 }
