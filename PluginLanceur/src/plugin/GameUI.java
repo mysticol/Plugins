@@ -148,6 +148,7 @@ public class GameUI {
 		frame.add(comp);
 		this.affichage = comp;
 		frame.pack();
+		frame.repaint();
 	}
 	
 	

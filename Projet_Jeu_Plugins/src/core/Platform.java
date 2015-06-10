@@ -163,10 +163,8 @@ public final class Platform {
 			try {
 				urls = new URL[]{ new URL(pluginInfo.getPath()) };
 			} catch (MalformedURLException e1) {
-				System.out.println("Erreur lors du chargement du plugin " +pluginInfo.getNom() + " PATH Incorrect");
 				e1.printStackTrace();
-			}
-				
+			} 
 					
 			URLClassLoader cl = new URLClassLoader(urls);
 			
