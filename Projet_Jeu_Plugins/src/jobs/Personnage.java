@@ -20,6 +20,11 @@ public abstract class Personnage {
 	 */	
 	@NonNull
 	private Integer vie;
+	/**
+	 * Attaque
+	 */
+	@NonNull
+	private Integer attaque;
 		
 	public void blesser(int degats){
 		this.vie = this.vie - degats;

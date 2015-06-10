@@ -11,18 +11,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false) 
 public class Guerrier extends Personnage {
-	/**
-	 * Attaque
-	 */
-	private int attaque;
-	
+		
 	/**
 	 * Constructeur
 	 * @param vie
 	 * @param attaque
 	 */
 	public Guerrier(int vie, int attaque){
-		super(vie);
-		this.attaque=attaque;
+		super(vie, attaque);
 	}
 }

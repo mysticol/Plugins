@@ -99,7 +99,7 @@ public class Lanceur implements ILauncherPlugin{
 		int y = random.nextInt(ROW_COUNT);
 		
 		System.out.println("Placement du hero sur la map à " + x + ":" + y);
-		hero = new Hero(100,0,0,DEPLACEMENT_MAX);
+		hero = new Hero(100,0,0,DEPLACEMENT_MAX,20);
 		carte.getCellule(x, y).setPersonnage(hero);
 		carte.setActualCell(carte.getCellule(x, y));
 		

@@ -20,8 +20,8 @@ public class Hero extends Personnage {
 	private final int deplacementMax;
 
 
-	public Hero(int vie, int stockNourriture,int stockOr, int deplacementMax){
-		super(vie);
+	public Hero(int vie, int stockNourriture,int stockOr, int deplacementMax, int attaque){
+		super(vie, attaque);
 		
 		this.stockNourriture=stockNourriture;
 		
@@ -34,7 +34,7 @@ public class Hero extends Personnage {
 	public void recolter(Ressource ressource){
 		if (ressource.getClass().equals(Or.class)){
 			stockOr+=100;
-			System.out.println("Stock Or du hero : " + this.getStockNourriture());
+			System.out.println("Stock Or du hero : " + this.getStockOr());
 			ressource.setMontant(ressource.getMontant()-100);
 		} else if (ressource.getClass().equals(Nourriture.class)){
 			stockNourriture+=100;
