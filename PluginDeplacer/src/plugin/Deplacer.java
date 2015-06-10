@@ -26,11 +26,21 @@ public class Deplacer implements IActionPlugin {
 		Carte carte = Platform.getInstance().getLauncherPlugin().getCarte();
 
 		if(carte.getSelectedCell()!=null){
-			if(Math.abs(carte.getSelectedCell().getCoord().x-hero.getCoord().x)<=hero.getDeplacementMax() &&
-					Math.abs(carte.getSelectedCell().getCoord().y-hero.getCoord().y)<=hero.getDeplacementMax()){
-				// ON set les nouvelles coordonnées du personnage
-				hero.setCoord(new Point(carte.getSelectedCell().getCoord().x,carte.getSelectedCell().getCoord().y));
-				System.out.println("Le personnage est maintenant en " + (int) hero.getCoord().x + ":" + hero.getCoord().y);
+			if(Math.abs(carte.getSelectedCell().getCoord().x-carte.getActualCell().getCoord().x)<=hero.getDeplacementMax() &&
+					Math.abs(carte.getSelectedCell().getCoord().y-carte.getActualCell().getCoord().y)<=hero.getDeplacementMax()){
+				if(carte.getSelectedCell().getPersonnage() == null){
+					
+					// ON set les nouvelles coordonnées du personnage et on le supprime de la cellule
+					carte.getActualCell().setPersonnage(null);;
+					carte.getSelectedCell().setPersonnage(hero);
+					
+					//On change la cellule courante					
+					carte.setActualCell(carte.getSelectedCell());
+					
+					System.out.println("Le personnage est maintenant en " + (int) carte.getActualCell().getCoord().x + ":" + carte.getActualCell().getCoord().y);
+				} else {
+					System.out.println("Un personnage est déjà présent sur cette case");
+				}
 			} else {
 				System.out.println("Le personnage ne peut pas se déplacer aussi loin");
 			}

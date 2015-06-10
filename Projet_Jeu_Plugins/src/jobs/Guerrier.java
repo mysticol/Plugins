@@ -18,12 +18,11 @@ public class Guerrier extends Personnage {
 	
 	/**
 	 * Constructeur
-	 * @param point
 	 * @param vie
 	 * @param attaque
 	 */
-	public Guerrier(Point coord, int vie, int attaque){
-		super(coord, vie);
+	public Guerrier(int vie, int attaque){
+		super(vie);
 		this.attaque=attaque;
 	}
 }

@@ -14,9 +14,4 @@ public abstract class Ressource {
 	 */
 	private int montant;
 	
-	/**
-	 * Cellule
-	 */
-	private Cellule cellule;
-
 }

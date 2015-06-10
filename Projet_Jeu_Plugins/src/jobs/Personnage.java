@@ -16,12 +16,6 @@ import lombok.RequiredArgsConstructor;
 public abstract class Personnage {
 	
 	/**
-	 * Coordonnées du personnage
-	 */
-	@NonNull
-	private Point coord;
-	
-	/**
 	 * Vie du personnage
 	 */	
 	@NonNull

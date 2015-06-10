@@ -20,7 +20,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import jobs.Carte;
-
+import jobs.Cellule;
+import jobs.Guerrier;
+import jobs.Hero;
+import jobs.Nourriture;
+import jobs.Or;
 import core.Platform;
 
 /**
@@ -188,23 +192,61 @@ public class Map extends JPanel implements IDisplayPlugin {
         	for (Rectangle cell : colCells) {
         		int column = cell.x / CELL_SIZE;
         		int row = cell.y / CELL_SIZE;
-        		if(Platform.getInstance().getLauncherPlugin().getHero().getCoord().x == column
-        				&& Platform.getInstance().getLauncherPlugin().getHero().getCoord().y == row){
-        			//g2d.setColor(Color.BLUE);
+        		Cellule gameCell = Platform.getInstance().getLauncherPlugin().getCarte().getCellule(column, row);
+        		
+        		g2d.setColor(Color.GRAY);
+            	g2d.draw(cell);
+            	
+            	/**
+        		 * Si il y a une ressource
+        		 */
+        		if(gameCell.getRessource()!=null){
+        			URL imagerURL = null;
+        			if(gameCell.getRessource() instanceof Or){
+        				imagerURL = getClass().getResource("/bourse.png");
+        			} else if(gameCell.getRessource() instanceof Nourriture){
+        				imagerURL = getClass().getResource("/food.png");
+        			}
+        			
         			Image img = null;
 					try {
-						URL imagerURL = getClass().getResource("/perso.png");
+						
+						img = ImageIO.read(imagerURL);
+					} catch (IOException e) {
+						System.out.println("Erreur lors du chargement de l'image de la ressource");
+						e.printStackTrace();
+					}
+        			g2d.drawImage(img, (int)cell.getX() , (int)cell.getY(), (int)cell.getWidth(), (int)cell.getHeight(), null);
+        			
+        		} 
+        		
+        		/**
+        		 * Si il y a un personnage
+        		 */
+        		if(gameCell.getPersonnage()!=null){
+        			URL imagerURL = null;
+        			if(gameCell.getPersonnage() instanceof Hero){
+        				imagerURL = getClass().getResource("/perso.png");
+        			} else if(gameCell.getPersonnage() instanceof Guerrier){
+        				imagerURL = getClass().getResource("/guerrier.png");
+        			}
+        			
+        			Image img = null;
+					try {
+						
 						img = ImageIO.read(imagerURL);
 					} catch (IOException e) {
 						System.out.println("Erreur lors du chargement de l'image du Hero");
 						e.printStackTrace();
 					}
         			g2d.drawImage(img, (int)cell.getX() , (int)cell.getY(), (int)cell.getWidth(), (int)cell.getHeight(), null);
-            		//g2d.fill(cell);
-        		} else {
-        			g2d.setColor(Color.GRAY);
-            		g2d.draw(cell);
-        		}
+        			
+        		} 
+        		
+        		
+            	/*if(gameCell.getRessource() instanceof Guerrier){
+        				imagerURL = getClass().getResource("/guerrier.png");
+        			}*/
         		
         	}
         }

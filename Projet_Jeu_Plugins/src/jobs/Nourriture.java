@@ -12,8 +12,8 @@ import lombok.EqualsAndHashCode;
 public class Nourriture extends Ressource {
 	
 	
-	public Nourriture(int montant, Cellule cellule){
-		super(montant, cellule);				
+	public Nourriture(int montant){
+		super(montant);				
 	}
 	
 }

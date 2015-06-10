@@ -12,8 +12,8 @@ import lombok.EqualsAndHashCode;
 public class Or extends Ressource {
 	
 	
-	public Or(int montant, Cellule cellule){
-		super(montant, cellule);				
+	public Or(int montant){
+		super(montant);				
 	}
 	
 }

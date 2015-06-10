@@ -1,9 +1,9 @@
-Lanceur = ILauncherPlugin;LANCEUR;file:///C:/Users/sheuze/Perso/Plugins/PluginLanceur/bin/;true
-Map = IDisplayPlugin;AFFICHAGE;file:///C:/Users/sheuze/Perso/Plugins/PluginMap/bin/;true
-Credits = IDisplayPlugin;AFFICHAGE;file:///C:/Users/sheuze/Perso/Plugins/PluginCredits/bin/;true
-Attaquer = IActionPlugin;ACTION;file:///C:/Users/sheuze/Perso/Plugins/PluginAttaquer/bin/;true
-Deplacer = IActionPlugin;ACTION;file:///C:/Users/sheuze/Perso/Plugins/PluginDeplacer/bin/;true
-Recolter = IActionPlugin;ACTION;file:///C:/Users/sheuze/Perso/Plugins/PluginRecolter/bin/;true
+Lanceur = ILauncherPlugin;LANCEUR;file:///D:/Workspaces/Plugins/PluginLanceur/bin/;true
+Map = IDisplayPlugin;AFFICHAGE;file:///D:/Workspaces/Plugins/PluginMap/bin/;true
+Credits = IDisplayPlugin;AFFICHAGE;file:///D:/Workspaces/Plugins/PluginCredits/bin/;true
+Attaquer = IActionPlugin;ACTION;file:///D:/Workspaces/Plugins/PluginAttaquer/bin/;true
+Deplacer = IActionPlugin;ACTION;file:///D:/Workspaces/Plugins/PluginDeplacer/bin/;true
+Recolter = IActionPlugin;ACTION;file:///D:/Workspaces/Plugins/PluginRecolter/bin/;true
  
-#SebH 1 : file:///D:/Workspace
+#SebH 1 : file:///D:/Workspaces
 #SebH 2 : file:///C:/Users/sheuze/Perso/

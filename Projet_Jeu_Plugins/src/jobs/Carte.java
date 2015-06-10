@@ -30,6 +30,10 @@ public class Carte {
 	 */
 	private Cellule selectedCell;
 
+	/**
+	 * Référence sur la cellule actuelle
+	 */
+	private Cellule actualCell;
 
 	/**
 	 * Constructeur d'une map aux dimensions données en paramètre

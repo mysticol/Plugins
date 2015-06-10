@@ -1,6 +1,7 @@
 package plugin;
 
 import interfaces.IActionPlugin;
+import jobs.Carte;
 import jobs.Cellule;
 import jobs.Hero;
 import jobs.Nourriture;
@@ -22,10 +23,16 @@ public class Recolter implements IActionPlugin {
 
 	public void doAction() {
 		Hero hero  = Platform.getInstance().getLauncherPlugin().getHero();
+		Carte carte = Platform.getInstance().getLauncherPlugin().getCarte();
 		
-		hero.recolter(new Nourriture(100, new Cellule(0, 0))); //Passer la cellule en paramètre
+		if(carte.getActualCell().getRessource()!=null){
+			hero.recolter(carte.getActualCell().getRessource()); //Passer la cellule en paramètre
+		} else {
+			System.out.println("Aucune ressource à récupérer");
+		}
+		
 
-		System.out.println("Stock Nourriture du hero : " + hero.getStockNourriture());
+		
 	}
 
 	

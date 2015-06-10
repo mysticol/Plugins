@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Random;
 
 import jobs.Carte;
+import jobs.Guerrier;
 import jobs.Hero;
+import jobs.Nourriture;
 import core.Platform;
 import core.PluginInfo;
 import core.TypePlugin;
@@ -35,6 +37,17 @@ public class Lanceur implements ILauncherPlugin{
      * Déplacement max Hero
      */
     private static final int DEPLACEMENT_MAX = 1;
+    
+    /**
+     * Nombre ennemis max
+     */
+    private static final int NB_ENNEMIS = 3;
+    
+    /**
+     * Nombre ennemis max
+     */
+    private static final int NB_NOURRITURE = 4;
+    
 	/**
 	 * L'interface de jeu
 	 */
@@ -86,9 +99,36 @@ public class Lanceur implements ILauncherPlugin{
 		int y = random.nextInt(ROW_COUNT);
 		
 		System.out.println("Placement du hero sur la map à " + x + ":" + y);
-		hero = new Hero(new Point(x,y),100,0,0,DEPLACEMENT_MAX);
+		hero = new Hero(100,0,0,DEPLACEMENT_MAX);
 		carte.getCellule(x, y).setPersonnage(hero);
-		hero.setCoord(new Point(x, y));
+		carte.setActualCell(carte.getCellule(x, y));
+		
+		int nbEnnemisMap = 0;
+		while (nbEnnemisMap < NB_ENNEMIS){
+			//Random
+			x = random.nextInt(COLUMN_COUNT);
+			y = random.nextInt(ROW_COUNT);
+			if (carte.getCellule(x, y).getPersonnage() == null){
+				System.out.println("Placement d'un guerrier sur la map à " + x + ":" + y);
+				Guerrier guerrier = new Guerrier(100,10);
+				carte.getCellule(x, y).setPersonnage(guerrier);
+				nbEnnemisMap++;
+			}
+		}
+		
+		int nbNourritureMap = 0;
+		while (nbNourritureMap < NB_NOURRITURE){
+			//Random
+			x = random.nextInt(COLUMN_COUNT);
+			y = random.nextInt(ROW_COUNT);
+			//ON vérifie si il n'y a pas de personnage sur la cellule
+			if (carte.getCellule(x, y).getPersonnage() == null && carte.getCellule(x, y).getRessource() == null){
+				System.out.println("Placement de nourriture sur la map à " + x + ":" + y);
+				Nourriture nourriture = new Nourriture(100);
+				carte.getCellule(x, y).setRessource(nourriture);
+				nbNourritureMap++;
+			}
+		}
 	}
 	
 	public void setAffichage(IDisplayPlugin pluginPrincipal){
