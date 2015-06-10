@@ -6,11 +6,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import jobs.Carte;
@@ -184,8 +190,17 @@ public class Map extends JPanel implements IDisplayPlugin {
         		int row = cell.y / CELL_SIZE;
         		if(Platform.getInstance().getLauncherPlugin().getHero().getCoord().x == column
         				&& Platform.getInstance().getLauncherPlugin().getHero().getCoord().y == row){
-        			g2d.setColor(Color.BLUE);
-            		g2d.fill(cell);
+        			//g2d.setColor(Color.BLUE);
+        			Image img = null;
+					try {
+						URL imagerURL = getClass().getResource("/perso.png");
+						img = ImageIO.read(imagerURL);
+					} catch (IOException e) {
+						System.out.println("Erreur lors du chargement de l'image du Hero");
+						e.printStackTrace();
+					}
+        			g2d.drawImage(img, (int)cell.getX() , (int)cell.getY(), (int)cell.getWidth(), (int)cell.getHeight(), null);
+            		//g2d.fill(cell);
         		} else {
         			g2d.setColor(Color.GRAY);
             		g2d.draw(cell);
