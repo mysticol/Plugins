@@ -24,7 +24,8 @@ public class Attaquer implements IActionPlugin {
 		Hero hero  = Platform.getInstance().getLauncherPlugin().getHero();
 		Carte carte = Platform.getInstance().getLauncherPlugin().getCarte();
 		
-		if(carte.getSelectedCell().getPersonnage()!=null)
+		if(carte.getSelectedCell().getPersonnage()!=null && Math.abs(carte.getSelectedCell().getCoord().x-carte.getActualCell().getCoord().x)<=hero.getDeplacementMax() &&
+				Math.abs(carte.getSelectedCell().getCoord().y-carte.getActualCell().getCoord().y)<=hero.getDeplacementMax())
 		{
 			carte.getSelectedCell().getPersonnage().blesser(hero.getAttaque());
 			hero.blesser(carte.getSelectedCell().getPersonnage().getAttaque());
@@ -39,7 +40,7 @@ public class Attaquer implements IActionPlugin {
 				System.out.println("Vie du guerrier : " + carte.getSelectedCell().getPersonnage().getVie());
 			}
 		} else {
-			System.out.println("Aucune ressource à récupérer");
+			System.out.println("Aucun guerrier à attaquer");
 		}
 		System.out.println("Vie du hero : " + hero.getVie());
 	}
