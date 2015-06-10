@@ -92,17 +92,12 @@ public class GameUI {
 		//Création de la fenêtre
     	JWindow window = new JWindow();
     	
-    	try {
-			window.getContentPane().add(
-			    new JLabel("", new ImageIcon(new URL("https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/000/0e4/133/0bfe0e9.jpg")), SwingConstants.CENTER));
-		} catch (MalformedURLException e1) {
-			System.out.println("URL du splashscreen invalide");
-			e1.printStackTrace();
-		}
+    	window.getContentPane().add(
+		    new JLabel("", new ImageIcon(this.getClass().getResource("/ageofmottu.png")), SwingConstants.CENTER));
     	
     	//Chargement au milieu de l'écran
     	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-    	window.setSize(300, 200);
+    	window.setSize(290, 347);
     	int x = (int) ((d.getWidth() - window.getWidth())/ 2);
     	int y = (int) ((d.getHeight() - window.getHeight())/ 2);
     	window.setLocation(x, y);
@@ -110,7 +105,7 @@ public class GameUI {
     	
     	//On attend 2 secondes pour la fermeture du splashscreen
     	try {
-    	    Thread.sleep(100);
+    	    Thread.sleep(2000);
     	} catch (InterruptedException e) {
     	    e.printStackTrace();
     	}

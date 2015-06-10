@@ -1,6 +1,5 @@
 package plugin;
 
-import java.awt.Point;
 
 import interfaces.IActionPlugin;
 import jobs.Carte;
