@@ -28,21 +28,21 @@ public class Map extends JPanel implements IDisplayPlugin {
 	 * Serial généré pour serialisation de MapPlugin (Caract du JPanel)
 	 */
 	private static final long serialVersionUID = 5636031456462170936L;
-	
-	/**
-	 * Nombre de colonne
-	 */
-	private static int COLUMN_COUNT = 10;
-	
-	/**
-	 * Nombre de lignes
-	 */
-    private static int ROW_COUNT = 10;
-    
+
     /**
      * Taille d'une cellule en pixel
      */
     private static int CELL_SIZE = 40;
+    
+    /**
+     * Nombre de lignes
+     */
+    private int rowCount;
+    
+    /**
+     * Nombre de colonnes
+     */
+    private int columnCount;
     
     /**
      * Cellules
@@ -72,7 +72,10 @@ public class Map extends JPanel implements IDisplayPlugin {
      * Constructeur du plugin
      */
     public Map() {
-    	mapCells = new Rectangle[ROW_COUNT][COLUMN_COUNT];
+    	rowCount = Platform.getInstance().getLauncherPlugin().getCarte().getNbLignes();
+		columnCount = Platform.getInstance().getLauncherPlugin().getCarte().getNbColonnes();
+		
+    	mapCells = new Rectangle[rowCount][columnCount];
     	
     	/**
     	 * Gestion de la souris
@@ -82,24 +85,18 @@ public class Map extends JPanel implements IDisplayPlugin {
             @Override
             public void mouseMoved(MouseEvent e) {
 
-                int width = getWidth();
-                int height = getHeight();
-
-                int cellWidth = width / COLUMN_COUNT;
-                int cellHeight = height / ROW_COUNT;
-
                 //Calcul de la colonne
-                int column = e.getX() / cellWidth;
-                if(column >= COLUMN_COUNT){
-                	column = COLUMN_COUNT-1;
+                int column = e.getX() / CELL_SIZE;
+                if(column >= columnCount){
+                	column = columnCount-1;
                 } else if (column < 0){
                 	column = 0;
                 }
                 
                 //Calcul de la ligne
-                int row = e.getY() / cellHeight;
-                if(row >= ROW_COUNT){
-                	row = ROW_COUNT-1;
+                int row = e.getY() / CELL_SIZE;
+                if(row >= rowCount){
+                	row = rowCount-1;
                 } else if (row < 0){
                 	row = 0;
                 }
@@ -121,7 +118,7 @@ public class Map extends JPanel implements IDisplayPlugin {
      */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(CELL_SIZE * ROW_COUNT, CELL_SIZE * COLUMN_COUNT);
+        return new Dimension(CELL_SIZE * rowCount, CELL_SIZE * columnCount);
     }
 
 
@@ -138,17 +135,17 @@ public class Map extends JPanel implements IDisplayPlugin {
         int width = getWidth();
         int height = getHeight();
 
-        int cellWidth = width / COLUMN_COUNT;
-        int cellHeight = height / ROW_COUNT;
+        int cellWidth = width / columnCount;
+        int cellHeight = height / rowCount;
 
-        int xOffset = (width - (COLUMN_COUNT * cellWidth)) / 2;
-        int yOffset = (height - (ROW_COUNT * cellHeight)) / 2;
+        int xOffset = (width - (columnCount * cellWidth)) / 2;
+        int yOffset = (height - (rowCount * cellHeight)) / 2;
 
         //Si la map n'est pas initialisée, le faire
         if (mapCells[0][0] == null) {
         	System.out.println("Initialisation de la MAP");
-            for (int row = 0; row < ROW_COUNT; row++) {
-                for (int col = 0; col < COLUMN_COUNT; col++) {
+            for (int row = 0; row < rowCount; row++) {
+                for (int col = 0; col < columnCount; col++) {
                     Rectangle cell = new Rectangle(
                             xOffset + (col * cellWidth),
                             yOffset + (row * cellHeight),
@@ -168,10 +165,19 @@ public class Map extends JPanel implements IDisplayPlugin {
         }
 
         //Dessiner l'interface graphique (Background + cellules)
-        g2d.setColor(Color.GRAY);
+        
         for (Rectangle[] colCells : mapCells) {
         	for (Rectangle cell : colCells) {
-        		g2d.draw(cell);
+        		int column = cell.x / CELL_SIZE;
+        		int row = cell.y / CELL_SIZE;
+        		if(Platform.getInstance().getLauncherPlugin().getCarte().getCellule(column, row).getPersonnage() != null){
+        			g2d.setColor(Color.BLUE);
+            		g2d.fill(cell);
+        		} else {
+        			g2d.setColor(Color.GRAY);
+            		g2d.draw(cell);
+        		}
+        		
         	}
         }
 

@@ -5,27 +5,20 @@ public class Cellule {
 	
 	protected int coordX;
 	protected int coordY;
-	protected Carte carte;
+
+
 	protected Ressource ressource;
 	protected Personnage personnage;
 	
 	
-	
-	public Carte getCarte() {
-		return carte;
-	}
-	public void setCarte(Carte carte) {
-		this.carte = carte;
-	}
 	public int getCoordX() {
 		return coordX;
 	}
 	
 	public Cellule() {
-		super();
 	}
+	
 	public Cellule(int coordX, int coordY) {
-		super();
 		this.coordX = coordX;
 		this.coordY = coordY;
 	}
@@ -42,6 +35,33 @@ public class Cellule {
 	@Override
 	public String toString() {
 		return "Cellule [coordX=" + coordX + ", coordY=" + coordY + "]";
+	}
+	
+	/**
+	 * @param ressource the ressource to set
+	 */
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
+	}
+	/**
+	 * @param personnage the personnage to set
+	 */
+	public void setPersonnage(Personnage personnage) {
+		this.personnage = personnage;
+	}
+
+	/**
+	 * @return the ressource
+	 */
+	public Ressource getRessource() {
+		return ressource;
+	}
+
+	/**
+	 * @return the personnage
+	 */
+	public Personnage getPersonnage() {
+		return personnage;
 	}
 	
 	

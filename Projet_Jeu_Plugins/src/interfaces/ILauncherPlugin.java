@@ -1,5 +1,6 @@
 package interfaces;
 
+import jobs.Carte;
 import jobs.Hero;
 import jobs.Personnage;
 
@@ -23,5 +24,10 @@ public interface ILauncherPlugin extends IPlugin {
 	 * On récupère le personnage
 	 */
 	public Hero getHero();
+	
+	/**
+	 * On récupère la carte
+	 */
+	public Carte getCarte();
 
 }

@@ -1,48 +1,55 @@
 package jobs;
 
-import java.util.ArrayList;
 
 public class Carte {
-	
-	// Attributs
-	
-		private ArrayList <Cellule> carte;
-	
-		private int nbLig;
-		private int nbCol;
-		
-		// Constructeurs
-		
-		public Carte(){
-		}
-		
-		public Carte(int nbLig, int nbCol){
-			this.nbLig=nbLig;
-			this.nbCol=nbCol;
-			carte = new ArrayList <Cellule>();
-			
-			for(int i=0;i<this.nbLig;i++){
-				for(int j=0;j<this.nbCol;j++){	
-					carte.add(new Cellule(i,j));
-				}
-				
-			}
-		}
-		
-		public void Afficher(){
-			System.out.println();
-			for(Cellule i : carte){
-				if (nbCol-1<=i.getCoordY()){
-					System.out.println('x');
-				} else {
-					System.out.print('x');
-				}
-				
-				
-				
-			}
-			}
-				
 
+	// Attributs
+
+	private Cellule[][] cellules;
+
+	private int nbLignes;
 	
+	private int nbColonnes;
+
+	// Constructeurs
+
+	public Carte(){
+	}
+
+	public Carte(int nbLignes, int nbColonnes){
+		this.nbLignes=nbLignes;
+		this.nbColonnes=nbColonnes;
+		cellules = new Cellule[nbColonnes][nbLignes];
+
+		for(int i=0;i<this.nbColonnes;i++){
+			for(int j=0;j<this.nbLignes;j++){	
+				cellules[i][j] = new Cellule(i,j);
+			}
+
+		}
+	}
+	
+	public Cellule getCellule(int colonne, int ligne){
+		return this.cellules[colonne][ligne];
+	}
+	
+	public void setCellule(int colonne, int ligne, Cellule cell){
+		this.cellules[colonne][ligne] = cell;
+	}
+
+	/**
+	 * @return the nbLignes
+	 */
+	public int getNbLignes() {
+		return nbLignes;
+	}
+
+	/**
+	 * @return the nbColonnes
+	 */
+	public int getNbColonnes() {
+		return nbColonnes;
+	}
+
+
 }

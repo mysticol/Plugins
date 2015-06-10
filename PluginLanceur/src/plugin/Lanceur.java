@@ -2,7 +2,9 @@ package plugin;
 
 import java.awt.Component;
 import java.util.List;
+import java.util.Random;
 
+import jobs.Carte;
 import jobs.Hero;
 import core.Platform;
 import core.PluginInfo;
@@ -17,17 +19,41 @@ import interfaces.ILauncherPlugin;
  */
 public class Lanceur implements ILauncherPlugin{
 	
+	/**
+	 * Nombre de colonne
+	 */
+	private static int COLUMN_COUNT = 10;
+	
+	/**
+	 * Nombre de lignes
+	 */
+    private static int ROW_COUNT = 10;
+    
+	/**
+	 * L'interface de jeu
+	 */
 	private GameUI gameUI;
 	
+	/**
+	 * Le hero
+	 */
 	private Hero hero;
+	
+	/**
+	 * La carte
+	 */
+	private Carte carte;
 	
 	public void chargerPlugin()
 	{
 		System.out.println("Le plugin Lanceur a été chargé !");
-		hero = new Hero(100, 0, 0);
 	}
 	
 	public void launch(){
+		hero = new Hero(100, 0, 0);
+		
+		carte = new Carte(COLUMN_COUNT, ROW_COUNT);
+		this.randomMap();
 		this.gameUI = new GameUI();
 		
 		//On récupère la liste des plugins
@@ -45,6 +71,19 @@ public class Lanceur implements ILauncherPlugin{
 		}
 	}
 	
+	/**
+	 * Random de la map
+	 */
+	public void randomMap(){
+		Random random = new Random();
+		//Placement du Hero
+		int x = random.nextInt(COLUMN_COUNT);
+		int y = random.nextInt(ROW_COUNT);
+		
+		System.out.println("Placement du hero sur la map à " + x + ":" + y);
+		carte.getCellule(x, y).setPersonnage(hero);
+	}
+	
 	public void setAffichage(IDisplayPlugin pluginPrincipal){
 		gameUI.setAffichageFrame((Component) pluginPrincipal);
 	}
@@ -52,5 +91,10 @@ public class Lanceur implements ILauncherPlugin{
 	@Override
 	public Hero getHero() {
 		return hero;
+	}
+
+	@Override
+	public Carte getCarte() {
+		return carte;
 	}
 }
