@@ -27,6 +27,7 @@ public class Recolter implements IActionPlugin {
 		
 		if(carte.getActualCell().getRessource()!=null){
 			hero.recolter(carte.getActualCell().getRessource()); //Passer la cellule en paramètre
+			carte.getActualCell().setRessource(null);
 		} else {
 			System.out.println("Aucune ressource à récupérer");
 		}
