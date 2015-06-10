@@ -1,18 +1,19 @@
 package jobs;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+
+/**
+ * Classe Nourriture
+ */
+@Data
+@EqualsAndHashCode(callSuper=false) 
 public class Nourriture extends Ressource {
 	
-	public Nourriture(){
-		
-	}
 	
-	public Nourriture(int montant){
-		super(montant);
-	}
-	
-	@Override
-	public String toString() {
-		return "Nourriture [nourriture=" +getMontant()+ "]";
+	public Nourriture(int montant, Cellule cellule){
+		super(montant, cellule);				
 	}
 	
 }

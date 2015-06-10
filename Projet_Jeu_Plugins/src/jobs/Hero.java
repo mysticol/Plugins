@@ -1,45 +1,34 @@
 package jobs;
 
+import java.awt.Point;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * Classe hero
+ */
+@Data
+@EqualsAndHashCode(callSuper=false) 
 public class Hero extends Personnage {
 
 	// Attributs
-	int stockOr;
-	int stockNourriture;
+	private int stockOr;
+	
+	private int stockNourriture;
 
-	int deplacementMax;
+	private final int deplacementMax;
 
-	// Constucteurs
-	public Hero(){
 
-	}
-
-	public Hero(int vie, int stockNourriture,int stockOr, int deplacementMax){
-		super(vie);
+	public Hero(Point coord, int vie, int stockNourriture,int stockOr, int deplacementMax){
+		super(coord, vie);
 		this.stockNourriture=stockNourriture;
 		this.stockOr=stockOr;
 		this.deplacementMax = deplacementMax;
 	}
 
 
-	// Getters and
-	public int getStockNourriture() {
-		return stockNourriture;
-	}
-
-
-
-	public void setStockNourriture(int stockNourriture) {
-		this.stockNourriture = stockNourriture;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Hero [vie=" +getVie()+ ", stock de nourriture=" + stockNourriture + ", stock d'or=" + stockOr + "]";
-	}
-
-	public void Recolter(Ressource ressource){
+	public void recolter(Ressource ressource){
 		if (ressource.getClass().equals(Or.class)){
 			stockOr+=100;
 			ressource.setMontant(ressource.getMontant()-100);
@@ -48,21 +37,8 @@ public class Hero extends Personnage {
 			ressource.setMontant(ressource.getMontant()-100);
 		}	
 	}
+	
 
-	public int getStockOr() {
-		return stockOr;
-	}
 
-	public void setStockOr(int stockOr) {
-		this.stockOr = stockOr;
-	}
-
-	public int getDeplacementMax() {
-		return deplacementMax;
-	}
-
-	public void setDeplacementMax(int deplacementMax) {
-		this.deplacementMax = deplacementMax;
-	}
 
 }

@@ -1,41 +1,29 @@
 package jobs;
 
+import java.awt.Point;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * Classe guerrier
+ */
+@Data
+@EqualsAndHashCode(callSuper=false) 
 public class Guerrier extends Personnage {
+	/**
+	 * Attaque
+	 */
+	private int attaque;
 	
-	// Attributs
-		int degats;
-		
-
-
-		// Constucteurs
-		public Guerrier(){
-
-		}
-
-		public Guerrier(int vie, int degats){
-			super(vie);
-			this.degats=degats;
-		}
-
-
-		// Getters and
-		public int getDegats() {
-			return degats;
-		}
-
-
-
-		public void setDegats(int degats) {
-			this.degats = degats;
-		}
-
-
-
-		@Override
-		public String toString() {
-			return "Guerrier [vie=" +getVie()+ ", degats=" + degats + "]";
-		}
-
-
-
+	/**
+	 * Constructeur
+	 * @param point
+	 * @param vie
+	 * @param attaque
+	 */
+	public Guerrier(Point coord, int vie, int attaque){
+		super(coord, vie);
+		this.attaque=attaque;
 	}
+}

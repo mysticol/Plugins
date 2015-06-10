@@ -1,20 +1,19 @@
 package jobs;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+
+/**
+ * Classe Or
+ */
+@Data
+@EqualsAndHashCode(callSuper=false) 
 public class Or extends Ressource {
-
-	public Or(){
-		
-	}
 	
-	public Or(int montant){
-		super(montant);
-	}
 	
-	@Override
-	public String toString() {
-		return "Or [montant=" +getMontant()+ "]";
+	public Or(int montant, Cellule cellule){
+		super(montant, cellule);				
 	}
-
-	
 	
 }

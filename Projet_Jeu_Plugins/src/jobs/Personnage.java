@@ -2,51 +2,36 @@ package jobs;
 
 import java.awt.Point;
 
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+/**
+ * Personnage
+ * @author sheuze
+ *
+ */
+@Data
+@RequiredArgsConstructor
 public abstract class Personnage {
 	
-	// Attributs
-	protected Point coord;
-	private int vie;
+	/**
+	 * Coordonnées du personnage
+	 */
+	@NonNull
+	private Point coord;
 	
-
-	//Constructeurs
-	
-	public Personnage(){
+	/**
+	 * Vie du personnage
+	 */	
+	@NonNull
+	private Integer vie;
 		
+	public void blesser(int degats){
+		this.vie = this.vie - degats;
+		
+		if(this.vie < 0){
+			this.vie = 0;
+		}
 	}
-	
-	public Personnage(int vie){
-		this.vie=vie;
-	}
-	
-	
-	
-	//Getters and Setters
-	
-	public int getVie() {
-		return vie;
-	}
-
-	public void setVie(int vie) {
-		this.vie = vie;
-	}
-
-	public void blesser(int nbVie) {
-		this.vie = this.vie - nbVie;
-	}
-	
-	@Override
-	public abstract String toString();
-
-	public Point getCoord() {
-		return coord;
-	}
-
-	public void setCoord(Point coord) {
-		this.coord = coord;
-	}
-	
-
-	
-	
 }

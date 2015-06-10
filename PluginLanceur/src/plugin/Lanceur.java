@@ -24,13 +24,17 @@ public class Lanceur implements ILauncherPlugin{
 	/**
 	 * Nombre de colonne
 	 */
-	private static int COLUMN_COUNT = 10;
+	private static final int COLUMN_COUNT = 10;
 	
 	/**
 	 * Nombre de lignes
 	 */
-    private static int ROW_COUNT = 10;
+    private static final int ROW_COUNT = 10;
     
+    /**
+     * Déplacement max Hero
+     */
+    private static final int DEPLACEMENT_MAX = 1;
 	/**
 	 * L'interface de jeu
 	 */
@@ -52,7 +56,6 @@ public class Lanceur implements ILauncherPlugin{
 	}
 	
 	public void launch(){
-		hero = new Hero(100, 0, 0, 1);
 		
 		carte = new Carte(COLUMN_COUNT, ROW_COUNT);
 		this.randomMap();
@@ -83,6 +86,7 @@ public class Lanceur implements ILauncherPlugin{
 		int y = random.nextInt(ROW_COUNT);
 		
 		System.out.println("Placement du hero sur la map à " + x + ":" + y);
+		hero = new Hero(new Point(x,y),100,0,0,DEPLACEMENT_MAX);
 		carte.getCellule(x, y).setPersonnage(hero);
 		hero.setCoord(new Point(x, y));
 	}

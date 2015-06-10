@@ -26,10 +26,10 @@ public class Deplacer implements IActionPlugin {
 		Carte carte = Platform.getInstance().getLauncherPlugin().getCarte();
 
 		if(carte.getSelectedCell()!=null){
-			if(Math.abs(carte.getSelectedCell().getCoordX()-hero.getCoord().x)<=hero.getDeplacementMax() &&
-					Math.abs(carte.getSelectedCell().getCoordY()-hero.getCoord().y)<=hero.getDeplacementMax()){
+			if(Math.abs(carte.getSelectedCell().getCoord().x-hero.getCoord().x)<=hero.getDeplacementMax() &&
+					Math.abs(carte.getSelectedCell().getCoord().y-hero.getCoord().y)<=hero.getDeplacementMax()){
 				// ON set les nouvelles coordonnées du personnage
-				hero.setCoord(new Point(carte.getSelectedCell().getCoordX(),carte.getSelectedCell().getCoordY()));
+				hero.setCoord(new Point(carte.getSelectedCell().getCoord().x,carte.getSelectedCell().getCoord().y));
 				System.out.println("Le personnage est maintenant en " + (int) hero.getCoord().x + ":" + hero.getCoord().y);
 			} else {
 				System.out.println("Le personnage ne peut pas se déplacer aussi loin");

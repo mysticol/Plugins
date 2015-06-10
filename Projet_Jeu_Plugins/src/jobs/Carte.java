@@ -1,23 +1,41 @@
 package jobs;
 
+import lombok.Data;
+import lombok.NonNull;
 
+/**
+ * Carte du jeu
+ */
+@Data
 public class Carte {
 
-	// Attributs
-
+	/**
+	 * Liste des cellules qui composant la map
+	 */
+	@NonNull
 	private Cellule[][] cellules;
 
-	private int nbLignes;
+	/**
+	 * nombre de lignes de la map
+	 */
+	private final int nbLignes;
 	
-	private int nbColonnes;
+	/**
+	 * nombre de colonnes de la map
+	 */
+	private final int nbColonnes;
 	
+	/**
+	 * Référence sur la cellule sélectionnée	
+	 */
 	private Cellule selectedCell;
 
-	// Constructeurs
 
-	public Carte(){
-	}
-
+	/**
+	 * Constructeur d'une map aux dimensions données en paramètre
+	 * @param nbLignes nombre de lignes
+	 * @param nbColonnes nombre de colonnes
+	 */
 	public Carte(int nbLignes, int nbColonnes){
 		this.nbLignes=nbLignes;
 		this.nbColonnes=nbColonnes;
@@ -31,35 +49,23 @@ public class Carte {
 		}
 	}
 	
+	/**
+	 * Récupère une cellule en x/y
+	 * @param colonne X
+	 * @param ligne Y
+	 * @return la cellule
+	 */
 	public Cellule getCellule(int colonne, int ligne){
 		return this.cellules[colonne][ligne];
 	}
 	
+	/**
+	 * Setter de cellule à un endroit spécifique
+	 * @param colonne la colonne
+	 * @param ligne ligne
+	 * @param cell la cellule à set
+	 */
 	public void setCellule(int colonne, int ligne, Cellule cell){
 		this.cellules[colonne][ligne] = cell;
 	}
-
-	/**
-	 * @return the nbLignes
-	 */
-	public int getNbLignes() {
-		return nbLignes;
-	}
-
-	/**
-	 * @return the nbColonnes
-	 */
-	public int getNbColonnes() {
-		return nbColonnes;
-	}
-
-	public Cellule getSelectedCell() {
-		return selectedCell;
-	}
-
-	public void setSelectedCell(Cellule selectedCell) {
-		this.selectedCell = selectedCell;
-	}
-
-
 }

@@ -135,7 +135,7 @@ public final class Platform {
 			String info = (String)config.get(key);
 			String[] infos = info.split(";");
 			if(infos[1].equals(type.name()) && ("interfaces." + infos[0]).equals(interf.getName()) && Boolean.valueOf(infos[3])) {
-				PluginInfo pluginInfo = new PluginInfo((String)key, infos[0],infos[1],infos[2]);
+				PluginInfo pluginInfo = new PluginInfo((String)key, infos[0],TypePlugin.valueOf(infos[1]),infos[2]);
 				listePluginsInfo.add(pluginInfo);
 			}
 		}		

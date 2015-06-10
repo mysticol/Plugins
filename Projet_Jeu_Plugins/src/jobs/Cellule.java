@@ -1,69 +1,40 @@
 package jobs;
 
+import java.awt.Point;
 
+import lombok.Data;
+
+/**
+ * Classe cellule
+ *
+ */
+@Data
 public class Cellule {
 	
-	protected int coordX;
-	protected int coordY;
+	/**
+	 * Coordonnée de la cellule
+	 */
+	private Point coord;
 
-
-	protected Ressource ressource;
-	protected Personnage personnage;
+	/**
+	 * Ressource contenue sur la cellule
+	 */
+	private Ressource ressource;
+	
+	/**
+	 * Personnage présent sur la cellule
+	 */
+	private Personnage personnage;
 	
 	
-	public int getCoordX() {
-		return coordX;
-	}
-	
-	public Cellule() {
-	}
-	
+	/**
+	 * Constructeur de cellule selon x et y
+	 * @param coordX
+	 * @param coordY
+	 */
 	public Cellule(int coordX, int coordY) {
-		this.coordX = coordX;
-		this.coordY = coordY;
+		this.coord = new Point(coordX, coordY);
 	}
-	public void setCoordX(int coordX) {
-		this.coordX = coordX;
-	}
-	public int getCoordY() {
-		return coordY;
-	}
-	public void setCoordY(int coordY) {
-		this.coordY = coordY;
-	}
-	
-	@Override
-	public String toString() {
-		return "Cellule [coordX=" + coordX + ", coordY=" + coordY + "]";
-	}
-	
-	/**
-	 * @param ressource the ressource to set
-	 */
-	public void setRessource(Ressource ressource) {
-		this.ressource = ressource;
-	}
-	/**
-	 * @param personnage the personnage to set
-	 */
-	public void setPersonnage(Personnage personnage) {
-		this.personnage = personnage;
-	}
-
-	/**
-	 * @return the ressource
-	 */
-	public Ressource getRessource() {
-		return ressource;
-	}
-
-	/**
-	 * @return the personnage
-	 */
-	public Personnage getPersonnage() {
-		return personnage;
-	}
-	
 	
 
 }
