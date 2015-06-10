@@ -55,7 +55,7 @@ public class Ressource extends JPanel implements IDisplayPlugin {
      */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(200, 200);
+        return new Dimension(400, 400);
     }
 	
 	protected void paintComponent(Graphics g) {

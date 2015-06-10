@@ -51,7 +51,7 @@ public class Credits extends JPanel implements IDisplayPlugin {
      */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(200, 200);
+        return new Dimension(400, 400);
     }
 
 
@@ -64,12 +64,14 @@ public class Credits extends JPanel implements IDisplayPlugin {
     	//Initialisation
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-      
-        Rectangle cell = new Rectangle(0,0,100,100);
 
         g2d.setColor(Color.BLUE);
-        g2d.drawString("Page de crédits", 150, 150);
-        g2d.fill(cell);
+        g2d.drawString("Développeurs", 150, 140);
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("DUBOIS Sébastien", 150, 175);
+        g2d.drawString("HEUZE Sébastien", 150, 190);
+        g2d.drawString("ROLLAND Baptiste", 150, 205);
+        g2d.drawString("NASSIRI Khalid", 150, 220);
         g2d.dispose();
     }
 

@@ -1,7 +1,5 @@
 package jobs;
 
-import java.awt.Point;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
