@@ -4,6 +4,7 @@ import interfaces.IDisplayPlugin;
 import interfaces.ILauncherPlugin;
 
 import java.awt.Component;
+import java.awt.Point;
 import java.util.List;
 import java.util.Random;
 
@@ -51,7 +52,7 @@ public class Lanceur implements ILauncherPlugin{
 	}
 	
 	public void launch(){
-		hero = new Hero(100, 0, 0);
+		hero = new Hero(100, 0, 0, 1);
 		
 		carte = new Carte(COLUMN_COUNT, ROW_COUNT);
 		this.randomMap();
@@ -83,6 +84,7 @@ public class Lanceur implements ILauncherPlugin{
 		
 		System.out.println("Placement du hero sur la map à " + x + ":" + y);
 		carte.getCellule(x, y).setPersonnage(hero);
+		hero.setCoord(new Point(x, y));
 	}
 	
 	public void setAffichage(IDisplayPlugin pluginPrincipal){

@@ -1,9 +1,11 @@
 package jobs;
 
+import java.awt.Point;
+
 public abstract class Personnage {
 	
 	// Attributs
-	protected Cellule cellule;
+	protected Point coord;
 	private int vie;
 	
 
@@ -18,13 +20,6 @@ public abstract class Personnage {
 	}
 	
 	
-	public void setCellule(Cellule cellule) {
-		this.cellule = cellule;
-	}
-
-	public Cellule getCellule(){
-		return cellule;
-	}
 	
 	//Getters and Setters
 	
@@ -42,6 +37,14 @@ public abstract class Personnage {
 	
 	@Override
 	public abstract String toString();
+
+	public Point getCoord() {
+		return coord;
+	}
+
+	public void setCoord(Point coord) {
+		this.coord = coord;
+	}
 	
 
 	

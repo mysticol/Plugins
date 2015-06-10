@@ -10,6 +10,8 @@ public class Carte {
 	private int nbLignes;
 	
 	private int nbColonnes;
+	
+	private Cellule selectedCell;
 
 	// Constructeurs
 
@@ -49,6 +51,14 @@ public class Carte {
 	 */
 	public int getNbColonnes() {
 		return nbColonnes;
+	}
+
+	public Cellule getSelectedCell() {
+		return selectedCell;
+	}
+
+	public void setSelectedCell(Cellule selectedCell) {
+		this.selectedCell = selectedCell;
 	}
 
 

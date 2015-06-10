@@ -13,6 +13,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
+import jobs.Carte;
+
 import core.Platform;
 
 /**
@@ -52,12 +54,19 @@ public class Map extends JPanel implements IDisplayPlugin {
      * Cellule sélectionnée
      */
     private Point selectedCell;
+    
+    /**
+     * La carte
+     */
+    private Carte carte;
+    
 
     /**
      * Méthode pour charger le plugin
      */
 	public void chargerPlugin() {
 		System.out.println("Le plugin Map a été chargé !");
+		this.carte = Platform.getInstance().getLauncherPlugin().getCarte();
 	}
 	
 	/**
@@ -82,7 +91,7 @@ public class Map extends JPanel implements IDisplayPlugin {
         MouseAdapter mouseHandler;
         mouseHandler = new MouseAdapter() {
             @Override
-            public void mouseMoved(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
                 //Calcul de la colonne
                 int column = e.getX() / CELL_SIZE;
@@ -102,12 +111,16 @@ public class Map extends JPanel implements IDisplayPlugin {
                 
                 //Cellule sélectionnée
                 selectedCell = new Point(column, row);
+                
+                //On sélectionne la cellule dans la classe métier
+                carte.setSelectedCell(carte.getCellule(column, row));
+                
                 repaint();
 
             }
         };
         //On ajoute le listener crée
-        addMouseMotionListener(mouseHandler);
+        addMouseListener(mouseHandler);
     }
 
 
@@ -130,7 +143,7 @@ public class Map extends JPanel implements IDisplayPlugin {
     	//Initialisation
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-
+        
         int width = getWidth();
         int height = getHeight();
 
@@ -169,7 +182,8 @@ public class Map extends JPanel implements IDisplayPlugin {
         	for (Rectangle cell : colCells) {
         		int column = cell.x / CELL_SIZE;
         		int row = cell.y / CELL_SIZE;
-        		if(Platform.getInstance().getLauncherPlugin().getCarte().getCellule(column, row).getPersonnage() != null){
+        		if(Platform.getInstance().getLauncherPlugin().getHero().getCoord().x == column
+        				&& Platform.getInstance().getLauncherPlugin().getHero().getCoord().y == row){
         			g2d.setColor(Color.BLUE);
             		g2d.fill(cell);
         		} else {
@@ -182,6 +196,11 @@ public class Map extends JPanel implements IDisplayPlugin {
 
         
         g2d.dispose();
+    }
+    
+    @Override
+    public void recharger(){
+    	this.repaint();
     }
 
 }

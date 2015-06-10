@@ -227,6 +227,16 @@ public class GameUI {
             
             IActionPlugin pluginPrincipal = (IActionPlugin) Platform.getInstance().getPlugin(plugin);
             pluginPrincipal.doAction();
+            
+            /*
+             * On raffraichit chaque plugin affichage 
+             */
+            List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IDisplayPlugin.class, TypePlugin.AFFICHAGE);
+            for(PluginInfo plugin : pluginInfo){
+            	IDisplayPlugin pluginDisplay = (IDisplayPlugin) Platform.getInstance().getPlugin(plugin);
+            	pluginDisplay.recharger();
+            }
+            
         }
     }	
 

@@ -73,7 +73,11 @@ public class Credits extends JPanel implements IDisplayPlugin {
         g2d.dispose();
     }
 
-	
+    @Override
+    public void recharger(){
+    	this.repaint();
+    }
+
 
 
 }

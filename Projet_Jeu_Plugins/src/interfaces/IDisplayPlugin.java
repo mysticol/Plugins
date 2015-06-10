@@ -11,4 +11,9 @@ public interface IDisplayPlugin extends IPlugin {
 	 * @return le composant à afficher
 	 */
 	public void display();
+	
+	/**
+	 * Recharger le composant graphique
+	 */
+	public void recharger();
 }

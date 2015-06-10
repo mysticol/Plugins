@@ -6,16 +6,18 @@ public class Hero extends Personnage {
 	int stockOr;
 	int stockNourriture;
 
+	int deplacementMax;
 
 	// Constucteurs
 	public Hero(){
 
 	}
 
-	public Hero(int vie, int stockNourriture,int stockOr){
+	public Hero(int vie, int stockNourriture,int stockOr, int deplacementMax){
 		super(vie);
 		this.stockNourriture=stockNourriture;
 		this.stockOr=stockOr;
+		this.deplacementMax = deplacementMax;
 	}
 
 
@@ -45,6 +47,22 @@ public class Hero extends Personnage {
 			stockNourriture+=100;
 			ressource.setMontant(ressource.getMontant()-100);
 		}	
+	}
+
+	public int getStockOr() {
+		return stockOr;
+	}
+
+	public void setStockOr(int stockOr) {
+		this.stockOr = stockOr;
+	}
+
+	public int getDeplacementMax() {
+		return deplacementMax;
+	}
+
+	public void setDeplacementMax(int deplacementMax) {
+		this.deplacementMax = deplacementMax;
 	}
 
 }
