@@ -1,9 +1,11 @@
-Lanceur = ILauncherPlugin;LANCEUR;file:///C:/Users/sheuze/Perso/Plugins/PluginLanceur/bin/;true
-Map = IDisplayPlugin;AFFICHAGE;file:///C:/Users/sheuze/Perso/Plugins/PluginMap/bin/;true
-Credits = IDisplayPlugin;AFFICHAGE;file:///C:/Users/sheuze/Perso/Plugins/PluginCredits/bin/;true
-Attaquer = IActionPlugin;ACTION;file:///C:/Users/sheuze/Perso/Plugins/PluginAttaquer/bin/;true
-Deplacer = IActionPlugin;ACTION;file:///C:/Users/sheuze/Perso/Plugins/PluginDeplacer/bin/;true
-Recolter = IActionPlugin;ACTION;file:///C:/Users/sheuze/Perso/Plugins/PluginRecolter/bin/;true
+Lanceur = ILauncherPlugin;LANCEUR;file:///C:/Users/Sébastien/git/Plugins/PluginLanceur/bin/;true
+Map = IDisplayPlugin;AFFICHAGE;file:///C:/Users/Sébastien/git/Plugins/PluginMap/bin/;true
+Credits = IDisplayPlugin;AFFICHAGE;file:///C:/Users/Sébastien/git/Plugins/PluginCredits/bin/;true
+Ressource = IDisplayPlugin;AFFICHAGE;file:///C:/Users/Sébastien/git/Plugins/PluginRessource/bin/;true
+Attaquer = IActionPlugin;ACTION;file:///C:/Users/Sébastien/git/Plugins/PluginAttaquer/bin/;true
+Deplacer = IActionPlugin;ACTION;file:///C:/Users/Sébastien/git/Plugins/PluginDeplacer/bin/;true
+Recolter = IActionPlugin;ACTION;file:///C:/Users/Sébastien/git/Plugins/PluginRecolter/bin/;true
  
 #SebH 1 : file:///D:/Workspace
 #SebH 2 : file:///C:/Users/sheuze/Perso/
+#SebD : file:///C:/Users/Sébastien/git/Plugins
