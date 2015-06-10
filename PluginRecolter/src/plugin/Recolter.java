@@ -3,7 +3,6 @@ package plugin;
 import interfaces.IActionPlugin;
 import jobs.Hero;
 import jobs.Nourriture;
-import jobs.Ressource;
 import core.Platform;
 
 /**
@@ -28,5 +27,4 @@ public class Recolter implements IActionPlugin {
 	}
 
 	
-
 }

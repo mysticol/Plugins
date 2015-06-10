@@ -1,7 +1,6 @@
 package plugin;
 
 import interfaces.IDisplayPlugin;
-import interfaces.IPlugin;
 
 import java.awt.Color;
 import java.awt.Dimension;

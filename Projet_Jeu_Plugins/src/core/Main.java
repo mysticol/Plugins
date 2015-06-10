@@ -1,8 +1,8 @@
 package core;
 
-import java.util.List;
-
 import interfaces.ILauncherPlugin;
+
+import java.util.List;
 
 /**
  * Classe principale

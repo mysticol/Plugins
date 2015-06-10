@@ -1,5 +1,8 @@
 package plugin;
 
+import interfaces.IDisplayPlugin;
+import interfaces.ILauncherPlugin;
+
 import java.awt.Component;
 import java.util.List;
 import java.util.Random;
@@ -9,8 +12,6 @@ import jobs.Hero;
 import core.Platform;
 import core.PluginInfo;
 import core.TypePlugin;
-import interfaces.IDisplayPlugin;
-import interfaces.ILauncherPlugin;
 
 /**
  * Plugin principal, appelé Lanceur

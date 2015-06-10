@@ -2,7 +2,6 @@ package interfaces;
 
 import jobs.Carte;
 import jobs.Hero;
-import jobs.Personnage;
 
 /**
  * Interface des plugins de lancement

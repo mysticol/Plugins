@@ -1,7 +1,6 @@
 package plugin;
 
 import interfaces.IActionPlugin;
-
 import jobs.Hero;
 import core.Platform;
 
