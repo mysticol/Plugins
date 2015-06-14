@@ -13,16 +13,20 @@ import core.Platform;
  */
 public class Deplacer implements IActionPlugin {
 
+	Hero hero;
+	
+	Carte carte;
+	
 	/**
 	 * Chargement du plugin
 	 */
 	public void chargerPlugin() {
+		hero  = Platform.getInstance().getLauncherPlugin().getObjectInstance(Hero.class);
+		carte = Platform.getInstance().getLauncherPlugin().getObjectInstance(Carte.class);
 		System.out.println("Le plugin Deplacer a été chargé !");
 	}
 
 	public void doAction() {
-		Hero hero  = Platform.getInstance().getLauncherPlugin().getHero();
-		Carte carte = Platform.getInstance().getLauncherPlugin().getCarte();
 
 		if(carte.getSelectedCell()!=null){
 			if(Math.abs(carte.getSelectedCell().getCoord().x-carte.getActualCell().getCoord().x)<=hero.getDeplacementMax() &&

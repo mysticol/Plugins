@@ -76,7 +76,6 @@ public class Map extends JPanel implements IDisplayPlugin {
      */
 	public void chargerPlugin() {
 		System.out.println("Le plugin Map a été chargé !");
-		this.carte = Platform.getInstance().getLauncherPlugin().getCarte();
 	}
 	
 	/**
@@ -90,8 +89,9 @@ public class Map extends JPanel implements IDisplayPlugin {
      * Constructeur du plugin
      */
     public Map() {
-    	rowCount = Platform.getInstance().getLauncherPlugin().getCarte().getNbLignes();
-		columnCount = Platform.getInstance().getLauncherPlugin().getCarte().getNbColonnes();
+    	this.carte = Platform.getInstance().getLauncherPlugin().getObjectInstance(Carte.class);
+    	rowCount = carte.getNbLignes();
+		columnCount = carte.getNbColonnes();
 		
     	mapCells = new Rectangle[rowCount][columnCount];
     	
@@ -192,7 +192,7 @@ public class Map extends JPanel implements IDisplayPlugin {
         	for (Rectangle cell : colCells) {
         		int column = cell.x / CELL_SIZE;
         		int row = cell.y / CELL_SIZE;
-        		Cellule gameCell = Platform.getInstance().getLauncherPlugin().getCarte().getCellule(column, row);
+        		Cellule gameCell = carte.getCellule(column, row);
         		
         		g2d.setColor(Color.GRAY);
             	g2d.draw(cell);

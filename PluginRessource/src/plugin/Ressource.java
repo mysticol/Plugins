@@ -24,10 +24,6 @@ public class Ressource extends JPanel implements IDisplayPlugin {
      */
     private Hero hero;
     
-    /**
-     * La carte
-     */
-    private Carte carte;
 	
 	/**
 	 * Serial généré pour serialisation de MapPlugin (Caract du JPanel)
@@ -39,8 +35,7 @@ public class Ressource extends JPanel implements IDisplayPlugin {
      */
 	public void chargerPlugin() {
 		System.out.println("Le plugin Ressource a été chargé !");	
-		this.carte = Platform.getInstance().getLauncherPlugin().getCarte();
-		this.hero = Platform.getInstance().getLauncherPlugin().getHero();		
+		this.hero = Platform.getInstance().getLauncherPlugin().getObjectInstance(Hero.class);	
 	}
 
 	/**

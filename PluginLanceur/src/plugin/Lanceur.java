@@ -5,6 +5,7 @@ import interfaces.ILauncherPlugin;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
 
@@ -135,13 +136,21 @@ public class Lanceur implements ILauncherPlugin{
 		gameUI.setAffichageFrame((Component) pluginPrincipal);
 	}
 
-	@Override
-	public Hero getHero() {
-		return hero;
-	}
+
 
 	@Override
-	public Carte getCarte() {
-		return carte;
+	public <T> T getObjectInstance(Class<T> clazz) {
+		Field[] fieldsList = this.getClass().getDeclaredFields();
+		for(Field field : fieldsList){
+			if(field.getType().equals(clazz)){
+				try {
+					return (T) field.get(this);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					System.out.println("Erreur lors de la récupération de l'objet");
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
 	}
 }

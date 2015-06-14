@@ -1,7 +1,5 @@
 package interfaces;
 
-import jobs.Carte;
-import jobs.Hero;
 
 /**
  * Interface des plugins de lancement
@@ -20,13 +18,8 @@ public interface ILauncherPlugin extends IPlugin {
 	public void setAffichage(IDisplayPlugin pluginPrincipal);
 	
 	/**
-	 * On récupère le personnage
+	 * Récupérer un objet du lanceur
 	 */
-	public Hero getHero();
+	public <T> T getObjectInstance(Class<T> clazz);
 	
-	/**
-	 * On récupère la carte
-	 */
-	public Carte getCarte();
-
 }

@@ -76,8 +76,12 @@ public class GameUI {
         //  (juste assez pour voir tous les composants)
     	frame.pack();
     	
-    	// on centre la fenêtre
-        frame.setLocationRelativeTo(null);
+    	//Chargement au milieu de l'écran
+    	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+    	frame.setSize(500, 500);
+        int x = (int) ((d.getWidth() - frame.getSize().width)/ 2);
+    	int y = (int) ((d.getHeight() - frame.getSize().height)/ 2);
+    	frame.setLocation(x, y);
         
         // on rend la fenêtre visible
         frame.setVisible(true);
@@ -130,6 +134,7 @@ public class GameUI {
         frame = new JFrame("Age of Mottu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout()); 
+        
 	}
 	
 	/**
