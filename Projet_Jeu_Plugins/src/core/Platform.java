@@ -106,6 +106,14 @@ public final class Platform {
 	}
 	
 	/**
+	 * Décharger les plugins
+	 */
+	public void unloadPlugins(){
+		actionPluginsList = new HashMap<String, IActionPlugin>();
+		displayPluginsList = new HashMap<String, IDisplayPlugin>();
+	}
+	
+	/**
 	 * Plugin Exist ?
 	 */
 	public IPlugin getPluginInstance(PluginInfo pluginInfo){

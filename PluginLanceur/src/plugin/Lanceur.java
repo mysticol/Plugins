@@ -42,7 +42,7 @@ public class Lanceur implements ILauncherPlugin{
     /**
      * Nombre ennemis max
      */
-    private static final int NB_ENNEMIS = 3;
+    private static final int NB_ENNEMIS = 5;
     
     /**
      * Nombre ennemis max
@@ -152,5 +152,12 @@ public class Lanceur implements ILauncherPlugin{
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void gameOver(String message) {
+		this.gameUI.gameOver(message);	
+		Platform.getInstance().unloadPlugins();
+		this.launch();
 	}
 }

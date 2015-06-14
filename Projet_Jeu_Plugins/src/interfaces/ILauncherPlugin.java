@@ -18,6 +18,11 @@ public interface ILauncherPlugin extends IPlugin {
 	public void setAffichage(IDisplayPlugin pluginPrincipal);
 	
 	/**
+	 * Game OVER
+	 */
+	public void gameOver(String message);
+	
+	/**
 	 * Récupérer un objet du lanceur
 	 */
 	public <T> T getObjectInstance(Class<T> clazz);

@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
@@ -239,7 +240,12 @@ public class GameUI {
             }
             
         }
-    }	
+    }
+
+	public void gameOver(String message) {
+		JOptionPane.showMessageDialog(null,message,"Game over",1);
+		System.out.println("Action");
+	}	
 
     
 }
