@@ -98,7 +98,7 @@ public class GameUI {
     	JWindow window = new JWindow();
     	
     	window.getContentPane().add(
-		    new JLabel("", new ImageIcon(this.getClass().getResource("/icon/ageofmottu.png")), SwingConstants.CENTER));
+		    new JLabel("", new ImageIcon(this.getClass().getResource("/ageofmottu.png")), SwingConstants.CENTER));
     	
     	//Chargement au milieu de l'écran
     	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
