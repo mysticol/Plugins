@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public abstract class Personnage {
 	
-	/**
+	/** 
 	 * Vie du personnage
 	 */	
 	@NonNull
