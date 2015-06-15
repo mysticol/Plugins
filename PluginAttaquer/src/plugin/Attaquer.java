@@ -26,41 +26,30 @@ public class Attaquer implements IActionPlugin {
 		System.out.println("Le plugin Attaquer a été chargé !");
 	}
 
-	public void doAction() {
+	public boolean doAction() {
 		
-		
-		if(carte.getSelectedCell().getPersonnage()!=null
+		boolean actionDone = false;
+		if(carte.getSelectedCell() != null
+				&& carte.getSelectedCell().getPersonnage()!=null
 				&& carte.getSelectedCell()!= carte.getActualCell()
 				&&  Math.abs(carte.getSelectedCell().getCoord().x-carte.getActualCell().getCoord().x)<=hero.getDeplacementMax()
 				&& 	Math.abs(carte.getSelectedCell().getCoord().y-carte.getActualCell().getCoord().y)<=hero.getDeplacementMax())
 		{
 			carte.getSelectedCell().getPersonnage().blesser(hero.getAttaque());
-			
+			System.out.println("Vie du guerrier : " + carte.getSelectedCell().getPersonnage().getVie());
 			if(carte.getSelectedCell().getPersonnage().getVie() <= 0) //On supprime le guerrier
 			{
 				carte.getSelectedCell().setPersonnage(null);
 				Or orGain = new Or(25);
 				carte.getSelectedCell().setRessource(orGain);				
 			}
-			else 
-			{ //Si le guerrier est toujours vivant il attaque à son tour
-				System.out.println("Vie du guerrier : " + carte.getSelectedCell().getPersonnage().getVie());
-				
-				hero.blesser(carte.getSelectedCell().getPersonnage().getAttaque());
-				if(hero.getVie() <= 0) //On supprime le hero si il n'a plus de vie
-				{
-					carte.getActualCell().setPersonnage(null);		
-					Platform.getInstance().getLauncherPlugin().gameOver("Votre hero n'a plus de vie");
-				}
-				else
-				{
-					System.out.println("Vie du hero : " + hero.getVie());
-				}
-			}
 			
+			actionDone = true;		
 			
 		} else {
 			System.out.println("Aucun guerrier à attaquer");
 		}
+		
+		return actionDone;
 	}
 }

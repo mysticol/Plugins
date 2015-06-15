@@ -228,7 +228,18 @@ public class GameUI {
             System.out.println("Action du plugin "+plugin.getNom());
             
             IActionPlugin pluginPrincipal = (IActionPlugin) Platform.getInstance().getPlugin(plugin);
-            pluginPrincipal.doAction();
+            boolean actionDone = pluginPrincipal.doAction();
+            
+            /*
+             * On lance les plugins AFTER_ACTIOn
+             */
+            if(actionDone){
+	            List<PluginInfo> pluginInfo = Platform.getInstance().getPluginsInfo(IActionPlugin.class, TypePlugin.AFTER_ACTION);
+	            for(PluginInfo plugin : pluginInfo){
+	            	IActionPlugin pluginAfterAction = (IActionPlugin) Platform.getInstance().getPlugin(plugin);
+	            	pluginAfterAction.doAction();
+	            }
+            }
             
             /*
              * On raffraichit chaque plugin affichage 

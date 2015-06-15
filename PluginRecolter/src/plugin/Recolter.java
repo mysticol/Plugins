@@ -27,17 +27,17 @@ public class Recolter implements IActionPlugin {
 		System.out.println("Le plugin Recolter a été chargé !");
 	}
 
-	public void doAction() {
-		
-		
+	public boolean doAction() {
+		boolean actionDone = false;
 		if(carte.getActualCell().getRessource()!=null){
 			hero.recolter(carte.getActualCell().getRessource()); //Passer la cellule en paramètre
 			carte.getActualCell().setRessource(null);
+			actionDone = true;
 		} else {
 			System.out.println("Aucune ressource à récupérer");
 		}
 		
-
+		return actionDone;
 		
 	}
 

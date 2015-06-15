@@ -9,5 +9,5 @@ public interface IActionPlugin extends IPlugin{
 	/**
 	 * Faire une action
 	 */
-	public void doAction();
+	public boolean doAction();
 }

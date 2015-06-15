@@ -26,8 +26,8 @@ public class Deplacer implements IActionPlugin {
 		System.out.println("Le plugin Deplacer a été chargé !");
 	}
 
-	public void doAction() {
-
+	public boolean doAction() {
+		boolean actionDone = false;
 		if(carte.getSelectedCell()!=null){
 			if(Math.abs(carte.getSelectedCell().getCoord().x-carte.getActualCell().getCoord().x)<=hero.getDeplacementMax() &&
 					Math.abs(carte.getSelectedCell().getCoord().y-carte.getActualCell().getCoord().y)<=hero.getDeplacementMax()){
@@ -41,6 +41,8 @@ public class Deplacer implements IActionPlugin {
 					carte.setActualCell(carte.getSelectedCell());
 					
 					System.out.println("Le personnage est maintenant en " + (int) carte.getActualCell().getCoord().x + ":" + carte.getActualCell().getCoord().y);
+					
+					actionDone = true;
 				} else {
 					System.out.println("Un personnage est déjà présent sur cette case");
 				}
@@ -51,6 +53,7 @@ public class Deplacer implements IActionPlugin {
 			System.out.println("Aucune case sélectionnée");
 		}
 		
+		return actionDone;
 	}
 
 	

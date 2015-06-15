@@ -42,7 +42,7 @@ public class Lanceur implements ILauncherPlugin{
     /**
      * Nombre ennemis max
      */
-    private static final int NB_ENNEMIS = 5;
+    private static final int NB_ENNEMIS = 3;
     
     /**
      * Nombre ennemis max
@@ -100,7 +100,7 @@ public class Lanceur implements ILauncherPlugin{
 		int y = random.nextInt(ROW_COUNT);
 		
 		System.out.println("Placement du hero sur la map à " + x + ":" + y);
-		hero = new Hero(100,0,0,DEPLACEMENT_MAX,20);
+		hero = new Hero(100,0,0,DEPLACEMENT_MAX,50);
 		carte.getCellule(x, y).setPersonnage(hero);
 		carte.setActualCell(carte.getCellule(x, y));
 		
@@ -111,7 +111,7 @@ public class Lanceur implements ILauncherPlugin{
 			y = random.nextInt(ROW_COUNT);
 			if (carte.getCellule(x, y).getPersonnage() == null){
 				System.out.println("Placement d'un guerrier sur la map à " + x + ":" + y);
-				Guerrier guerrier = new Guerrier(100,10);
+				Guerrier guerrier = new Guerrier(100,30);
 				carte.getCellule(x, y).setPersonnage(guerrier);
 				nbEnnemisMap++;
 			}

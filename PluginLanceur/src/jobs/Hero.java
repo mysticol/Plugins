@@ -18,10 +18,9 @@ public class Hero extends Personnage {
 	private int stockNourriture;
 
 	private final int deplacementMax;
-
-
+	
 	public Hero(int vie, int stockNourriture,int stockOr, int deplacementMax, int attaque){
-		super(vie, attaque);
+		super(vie, attaque, vie);
 		
 		this.stockNourriture=stockNourriture;
 		

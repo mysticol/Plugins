@@ -6,5 +6,9 @@
         	<fileset dir="icon">
   			</fileset>	
         </jar>
+        <jar jarfile="../Projet_Jeu_Plugins/mods/PluginLanceur.jar" basedir="bin" includes="*/*.class">
+        	<fileset dir="icon">
+  			</fileset>	
+        </jar>
   </target>
 </project>

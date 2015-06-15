@@ -6,5 +6,6 @@ package core;
 public enum TypePlugin {
 	LANCEUR,
 	AFFICHAGE,
-	ACTION
+	ACTION,
+	AFTER_ACTION
 }

@@ -16,6 +16,6 @@ public class Guerrier extends Personnage {
 	 * @param attaque
 	 */
 	public Guerrier(int vie, int attaque){
-		super(vie, attaque);
+		super(vie, attaque, vie);
 	}
 }

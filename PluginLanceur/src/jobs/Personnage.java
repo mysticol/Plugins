@@ -25,7 +25,12 @@ public abstract class Personnage {
 	 */
 	@NonNull
 	private Integer attaque;
-		
+	
+	/**
+	 * Vie initiale (max)
+	 */
+	private final int vieMax;
+	
 	public void blesser(int degats){
 		this.vie = this.vie - degats;
 		

@@ -2,8 +2,7 @@
 <!-- Configuration of the Ant build system to generate a Jar file --> 
 <project name="TestMain" default="CreateJar">
   <target name="CreateJar" description="Create Jar file">
-        <jar jarfile="../finalApp/mods/PluginRecolter.jar" basedir="bin" includes="*/*.class">
-
-        </jar>
+        <jar jarfile="../finalApp/mods/PluginRecolter.jar" basedir="bin" includes="*/*.class"/>
+  		<jar jarfile="../Projet_Jeu_Plugins/mods/PluginRecolter.jar" basedir="bin" includes="*/*.class"/>
   </target>
 </project>
