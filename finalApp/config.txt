@@ -2,7 +2,7 @@ Lanceur = ILauncherPlugin;LANCEUR;PluginLanceur;true
 Credits = IDisplayPlugin;AFFICHAGE;PluginCredits;true
 Ressource = IDisplayPlugin;AFFICHAGE;PluginRessource;true
 Map = IDisplayPlugin;AFFICHAGE;PluginMap;true
-Attaquer = IActionPlugin;ACTION;PluginAttaquer;true
+Attaquer = IActionPlugin;ACTION;PluginAttaquer;false
 Deplacer = IActionPlugin;ACTION;PluginDeplacer;true
 Recolter = IActionPlugin;ACTION;PluginRecolter;true
  

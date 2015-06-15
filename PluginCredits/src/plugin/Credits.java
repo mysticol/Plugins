@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
+import jobs.Carte;
 import core.Platform;
 
 /**
@@ -29,6 +30,7 @@ public class Credits extends JPanel implements IDisplayPlugin {
      * Méthode pour charger le plugin
      */
 	public void chargerPlugin() {
+		Platform.getInstance().getLauncherPlugin().getObjectInstance(Lanceur.class);
 		System.out.println("Le plugin Credits a été chargé !");
 	}
 	

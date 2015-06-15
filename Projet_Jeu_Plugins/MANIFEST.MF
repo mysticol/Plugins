@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: "mods/*"
+Main-Class: core.Main
+Created-By: 1.7.0_06 (Oracle Corporation)

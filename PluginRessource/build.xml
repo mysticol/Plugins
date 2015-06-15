@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Configuration of the Ant build system to generate a Jar file --> 
+<project name="TestMain" default="CreateJar">
+  <target name="CreateJar" description="Create Jar file">
+        <jar jarfile="../finalApp/mods/PluginRessource.jar" basedir="bin" includes="*/*.class">
+
+        </jar>
+  </target>
+</project>

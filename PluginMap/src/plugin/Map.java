@@ -203,9 +203,9 @@ public class Map extends JPanel implements IDisplayPlugin {
         		if(gameCell.getRessource()!=null){
         			URL imagerURL = null;
         			if(gameCell.getRessource() instanceof Or){
-        				imagerURL = getClass().getResource("/bourse.png");
+        				imagerURL = getClass().getResource("/icon/bourse.png");
         			} else if(gameCell.getRessource() instanceof Nourriture){
-        				imagerURL = getClass().getResource("/food.png");
+        				imagerURL = getClass().getResource("/icon/food.png");
         			}
         			
         			Image img = null;
@@ -226,9 +226,9 @@ public class Map extends JPanel implements IDisplayPlugin {
         		if(gameCell.getPersonnage()!=null){
         			URL imagerURL = null;
         			if(gameCell.getPersonnage() instanceof Hero){
-        				imagerURL = getClass().getResource("/perso.png");
+        				imagerURL = getClass().getResource("/icon/perso.png");
         			} else if(gameCell.getPersonnage() instanceof Guerrier){
-        				imagerURL = getClass().getResource("/guerrier.png");
+        				imagerURL = getClass().getResource("/icon/guerrier.png");
         			}
         			
         			Image img = null;

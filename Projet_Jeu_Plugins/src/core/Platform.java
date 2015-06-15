@@ -5,6 +5,7 @@ import interfaces.IDisplayPlugin;
 import interfaces.ILauncherPlugin;
 import interfaces.IPlugin;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -169,7 +170,10 @@ public final class Platform {
 			//présent dans le fichier de configuration
 			URL[] urls = null;
 			try {
-				urls = new URL[]{ new URL(pluginInfo.getPath()) };
+				File classFolder = new File(System.getProperty("user.dir") + "/mods/"+pluginInfo.getPath()+".jar");
+				URL url = classFolder.toURI().toURL();
+				System.out.println("Chargement du plugin situé à : " + url);
+				urls = new URL[]{ url};
 			} catch (MalformedURLException e1) {
 				e1.printStackTrace();
 			} 
