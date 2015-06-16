@@ -1,18 +1,13 @@
 package jobs;
 
-import lombok.Data;
-import lombok.NonNull;
-
 /**
  * Carte du jeu
  */
-@Data
 public class Carte {
 
 	/**
 	 * Liste des cellules qui composant la map
 	 */
-	@NonNull
 	private Cellule[][] cellules;
 
 	/**
@@ -72,4 +67,62 @@ public class Carte {
 	public void setCellule(int colonne, int ligne, Cellule cell){
 		this.cellules[colonne][ligne] = cell;
 	}
+
+	/**
+	 * @return the cellules
+	 */
+	public Cellule[][] getCellules() {
+		return cellules;
+	}
+
+	/**
+	 * @param cellules the cellules to set
+	 */
+	public void setCellules(Cellule[][] cellules) {
+		this.cellules = cellules;
+	}
+
+	/**
+	 * @return the selectedCell
+	 */
+	public Cellule getSelectedCell() {
+		return selectedCell;
+	}
+
+	/**
+	 * @param selectedCell the selectedCell to set
+	 */
+	public void setSelectedCell(Cellule selectedCell) {
+		this.selectedCell = selectedCell;
+	}
+
+	/**
+	 * @return the actualCell
+	 */
+	public Cellule getActualCell() {
+		return actualCell;
+	}
+
+	/**
+	 * @param actualCell the actualCell to set
+	 */
+	public void setActualCell(Cellule actualCell) {
+		this.actualCell = actualCell;
+	}
+
+	/**
+	 * @return the nbLignes
+	 */
+	public int getNbLignes() {
+		return nbLignes;
+	}
+
+	/**
+	 * @return the nbColonnes
+	 */
+	public int getNbColonnes() {
+		return nbColonnes;
+	}
+	
+	
 }

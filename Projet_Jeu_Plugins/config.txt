@@ -1,4 +1,4 @@
-﻿Lanceur = ILauncherPlugin;LANCEUR;PluginLanceur;true
+Lanceur = ILauncherPlugin;LANCEUR;PluginLanceur;true
 Credits = IDisplayPlugin;AFFICHAGE;PluginCredits;true
 Ressource = IDisplayPlugin;AFFICHAGE;PluginRessource;true
 Map = IDisplayPlugin;AFFICHAGE;PluginMap;true

@@ -21,7 +21,7 @@ public class GameOver implements IActionPlugin {
 	/**
 	 * Chargement du plugin
 	 */
-	public void chargerPlugin() {
+	public void chargerPlugin() { 
 		hero  = Platform.getInstance().getLauncherPlugin().getObjectInstance(Hero.class);
 		carte  = Platform.getInstance().getLauncherPlugin().getObjectInstance(Carte.class);
 		System.out.println("Le plugin GameOver a été chargé !");

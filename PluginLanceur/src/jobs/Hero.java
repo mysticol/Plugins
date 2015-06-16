@@ -2,14 +2,10 @@ package jobs;
 
 import java.awt.Point;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * Classe hero
  */
-@Data
-@EqualsAndHashCode(callSuper=false) 
 public class Hero extends Personnage {
 
 	// Attributs
@@ -41,8 +37,48 @@ public class Hero extends Personnage {
 			System.out.println("Stock Nourriture du hero : " + this.getStockNourriture());
 		}	
 	}
-	
 
+
+	/**
+	 * @return the stockOr
+	 */
+	public int getStockOr() {
+		return stockOr;
+	}
+
+
+	/**
+	 * @param stockOr the stockOr to set
+	 */
+	public void setStockOr(int stockOr) {
+		this.stockOr = stockOr;
+	}
+
+
+	/**
+	 * @return the stockNourriture
+	 */
+	public int getStockNourriture() {
+		return stockNourriture;
+	}
+
+
+	/**
+	 * @param stockNourriture the stockNourriture to set
+	 */
+	public void setStockNourriture(int stockNourriture) {
+		this.stockNourriture = stockNourriture;
+	}
+
+
+	/**
+	 * @return the deplacementMax
+	 */
+	public int getDeplacementMax() {
+		return deplacementMax;
+	}
+	
+	
 
 
 }
