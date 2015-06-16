@@ -1,3 +1,13 @@
+﻿Lanceur = ILauncherPlugin;LANCEUR;PluginLanceur;true
+Credits = IDisplayPlugin;AFFICHAGE;PluginCredits;true
+Ressource = IDisplayPlugin;AFFICHAGE;PluginRessource;true
+Map = IDisplayPlugin;AFFICHAGE;PluginMap;true
+Attaquer = IActionPlugin;ACTION;PluginAttaquer;true
+Deplacer = IActionPlugin;ACTION;PluginDeplacer;true
+Recolter = IActionPlugin;ACTION;PluginRecolter;true
+AI = IActionPlugin;AFTER_ACTION;PluginAI;true
+GameOver = IActionPlugin;AFTER_ACTION;PluginGameOver;true
+RegenerationVie = IActionPlugin;AFTER_ACTION;PluginRegenerationVie;true
 
 #SebH 1 : file:///D:/Workspaces
 #SebH 2 : file:///C:/Users/sheuze/Perso/
