@@ -142,7 +142,6 @@ public class Lanceur implements ILauncherPlugin{
 	public <T> T getObjectInstance(Class<T> clazz) {
 		Field[] fieldsList = this.getClass().getDeclaredFields();
 		for(Field field : fieldsList){
-			System.out.println(field.getType());
 			System.out.println(clazz);
 			if(field.getType().equals(clazz)){
 				try {
